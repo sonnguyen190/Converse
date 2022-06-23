@@ -3,20 +3,7 @@
   margin: 0px;
   padding: 0px;
 }
-.cha{
-  background-color:#00b4ff;
-  border: 1px solid #000;
-  width: 1250px;
-  height: 750px;
-  margin: 50px;
-}
-.con{
-  background-image: url("https://1b-f.s3.eu-west-1.amazonaws.com/a/53460-8A6BCC93-3244-459F-A8C0-1AE48767A491-0-1499558789.gif");
-  height: 100px;
-  width: 100px;
-  background-size: 100%;
-  background-repeat: no-repeat;
-}
+
 
 .grid{
   width: 100%;
@@ -947,6 +934,24 @@ bo quang cao =====================================================*/
 
 
 
+@media only screen and (min-width:991px) and (max-width: 1440px) {
+  .grid{
+    width: 100%;
+    display: block;
+    padding: 0px;
+  }
+  .grid.wide{
+    max-width: 1240px;
+    margin: 0 auto;
+  }
+  .navbar_tong{
+    width: 100%;
+    display: block;
+    padding: 0px;
+    max-width: 1240px;
+    margin: 0 auto;
+  }
+}
 
 /* tablet ==============================================================*/
 @media only screen and (min-width:991px) and (max-width: 1124px) {
