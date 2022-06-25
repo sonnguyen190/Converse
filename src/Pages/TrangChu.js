@@ -8,6 +8,7 @@ import ShopByStyle from "../Module/ShopByStyle";
 import SignUpForEmail from "../Module/SignUpForEmail";
 import SlipsTake from "../Module/SlipsTake";
 import TrendingStyles from "../Module/TrendingStyles";
+import Community from "../Module/Community";
 class TrangChu extends Component {
   render() {
     return (
@@ -19,6 +20,7 @@ class TrangChu extends Component {
         <SlipsTake />
         <Everupward />
         <TrendingStyles />
+        <Community />
         <SignUpForEmail />
       </div>
     );
