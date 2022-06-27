@@ -6,7 +6,7 @@ class List_item_shopby extends Component {
       <div className="grid wide">
         <div className="Trending_Style_all">
           <div className="Trending_style">
-            <div className="Trending_style_img1 ">
+            <div className="Trending_style_img5 ">
               <a href="/HighTop">
                 <div className="overlay_trending">SHOP HIGH TOPS</div>
                 <div className="Trending_style_span">HIGH TOPS</div>
@@ -14,7 +14,7 @@ class List_item_shopby extends Component {
             </div>
           </div>
           <div className="Trending_style">
-            <div className="Trending_style_img2">
+            <div className="Trending_style_img6">
               <a href="/LowTop">
                 <div className="overlay_trending">
                   <span className="overlay_trending_span">SHOP LOW TOPS</span>
@@ -25,7 +25,7 @@ class List_item_shopby extends Component {
             <div></div>
           </div>
           <div className="Trending_style">
-            <div className="Trending_style_img3">
+            <div className="Trending_style_img7">
               <a href="/PlatForms">
                 <div className="overlay_trending">
                   <span className="overlay_trending_span">SHOP PLATFORMS</span>
@@ -36,7 +36,7 @@ class List_item_shopby extends Component {
             <div></div>
           </div>
           <div className="Trending_style">
-            <div className="Trending_style_img4">
+            <div className="Trending_style_img8">
               <div className="overlay_trending">
                 <span className="overlay_trending_span">SHOP CUSTOM</span>
               </div>
