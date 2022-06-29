@@ -13,6 +13,7 @@ class Navbar extends Component {
     this.state = {
       isShow: false,
       scrollY: 60,
+      width: 100,
     };
   }
   handleIsShow = () => {
@@ -31,11 +32,13 @@ class Navbar extends Component {
       this.setState({
         ...this.state,
         scrollY: 0,
+        width: 50,
       });
     } else {
       this.setState({
         ...this.state,
         scrollY: 60,
+        width: 346,
       });
     }
   };

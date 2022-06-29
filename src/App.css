@@ -222,8 +222,8 @@
   height: 0px;
 }
 .Navbar_button_search {
-  height: 100%;
-  width: 100%;
+  
+  
   background-color: black;
   color: azure;
   padding: 10px;
@@ -790,7 +790,7 @@ background-color: white;
 }
 .main_right{
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: 25% 25% 25% 25%;
   margin-top: 80px;
 }
 .Kids_Gender{
@@ -841,9 +841,45 @@ background-color: white;
   opacity: 1;
   
 }
+
+
+
 .overlay_addtocart_div_button{
-  left: 0;
+  position: relative;
+  transition: ease 0.3s ;
+  background-color: white;
+  color: #000;
+  display: inline-block;
+  width: 50%;
+  
+  font-size: .875rem;
+  top: 80%;
+  left: 40%;
 }
+.overlay_addtocart_div_button_grid{
+  display: flex;
+}
+
+.overlay_addtocart_div_button:hover{
+  background-color: black;
+  color: white;
+}
+.overlay_addtocart_div_button_grid1{
+  text-align: center;
+  padding: 10px 5px;
+  width: 200px;
+  border-right: 1px #757575 solid;
+  font-size: 15px;
+  font-weight: 600;
+}
+.overlay_addtocart_div_button_grid2{
+  padding: 10px 10px;
+
+  font-weight: 600;
+}
+
+
+
 .img_gio_hang img{
   width: 97px;
   height: 122px;
@@ -1043,11 +1079,11 @@ background-color: white;
 .footer{
   width: 100%;
   display: block;
-  margin: 0px;
+  margin-top: 5px;
   padding: 0;
 }
 .head_footer_item_1{
-  padding: 30px 60px;
+  padding: 20px 40px;
   
 }
 .head_footer_item_1_title{
@@ -1055,6 +1091,56 @@ background-color: white;
   padding-bottom: 10px;
 }
 .head_footer_item_1_content{
+  color: #757575;
+  font-size: 15px;
+}
+.head_footer_item_1_content_button{
+  background-color: #000;
+  transition: ease 0.3s;
+  padding: 12px;
+  color: white;
+}
+.head_footer_item_1_content_button:hover{
+  background-color: white;
+  
+  color: black;
+}
+.head_footer_item_1_content_input{
+  padding:  11px;
+  border: 1px solid;
+  border-right: none;
+  width: 100%;
+  
+}
+.head_footer_item_1_input_email{
+  box-sizing: border-box;
+  display: flex;
+  margin-top: 20px;
+  
+}
+.head_footer_item_2{
+  padding: 20px 40px;
+}
+.head_footer_item_2 a{
+  margin: 5px 0px;
+  color: black;
+  font-weight: 500;
+}
+.head_footer_item_2 a:hover{
+  text-decoration: none;
+}
+.head_footer_item_2_folow{
+  font-weight: 500;
+  margin-top: 20px;
+  
+}
+.head_footer_item_3{
+  padding: 20px 40px;
+}
+.head_footer_item_3_title{
+  font-weight: 600;
+}
+.head_footer_item_3_ul li a{
   color: #757575;
   font-size: 15px;
 }
