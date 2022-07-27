@@ -15,24 +15,32 @@ class Register extends Component {
       ho_ten: "",
       valid_ho_ten: "",
       gioi_tinh: "Nữ",
-      isShow: "",
-      block: "",
+      is_active: "signin",
     };
   }
-  handleShowSignUp = () => {
-    this.setState((pre) => {
-      pre.isShow = "SignUp";
-      pre.block = "block";
-      return pre;
+
+  change_signup = () => {
+    this.setState((prev) => {
+      prev.is_active = "signup";
+      return prev;
     });
+    document.getElementById("signup").style.color = "black";
+    document.getElementById("signin").style.color = "gray";
+    document.getElementById("signup").style.textDecoration = "underline";
+    document.getElementById("signin").style.textDecoration = "none";
   };
-  handleShowSignIn = () => {
-    this.setState((pre) => {
-      pre.isShow = "SignIn";
-      pre.block = "block";
-      return pre;
+
+  change_signin = () => {
+    this.setState((prev) => {
+      prev.is_active = "signin";
+      return prev;
     });
+    document.getElementById("signin").style.color = "black";
+    document.getElementById("signup").style.color = "gray";
+    document.getElementById("signin").style.textDecoration = "underline";
+    document.getElementById("signup").style.textDecoration = "none";
   };
+
   handleChange = (e) => {
     var flag = "";
     if (e.target.name === "email" && e.target.value) {
@@ -79,29 +87,31 @@ class Register extends Component {
           role="form"
         >
           <div className="form-group title_register">
-            <div onClick={this.handleShowSignUp}>Sign Up</div>
-            <div onClick={this.handleShowSignIn}>Sign In</div>
+            <div id="signin" onClick={this.change_signin}>
+              SIGN IN
+            </div>
+            <div id="signup" onClick={this.change_signup}>
+              SIGN UP
+            </div>
           </div>
-          <div
-            className={"form" + this.state.isShow}
-            style={{ display: this.state.block }}
-          >
-            <SignUp
-              email={this.state.email}
-              password={this.state.password}
-              repassword={this.state.repassword}
-              ho_ten={this.state.ho_ten}
-              gioi_tinh={this.state.gioi_tinh}
-              handleChange={this.handleChange}
-              valid_email={this.state.valid_email}
-            ></SignUp>
-          </div>
-          <div
-            className={"form" + this.state.isShow}
-            style={{ display: this.state.block }}
-          >
-            <SignIn></SignIn>
-          </div>
+          {this.state.is_active == "signin" ? (
+            <div>
+              <SignIn></SignIn>
+            </div>
+          ) : (
+            <div>
+              <SignUp
+                change_signin={this.change_signin}
+                email={this.state.email}
+                password={this.state.password}
+                repassword={this.state.repassword}
+                ho_ten={this.state.ho_ten}
+                gioi_tinh={this.state.gioi_tinh}
+                handleChange={this.handleChange}
+                valid_email={this.state.valid_email}
+              ></SignUp>
+            </div>
+          )}
         </form>
       </div>
     );
