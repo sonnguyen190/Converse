@@ -740,10 +740,10 @@ border-width: 1px;
   background-color: white;
 }
 .formhorizontal{
+  justify-content: center;
   height: 750px;
   width: 450px;
-  left: 35%;
-  right: 45%;
+  
   transition: ease 0.5s;
   text-align: center;
   background-color: #f4f4f4;
@@ -753,6 +753,10 @@ border-width: 1px;
   transition: ease 0.5s;
   
 }
+.all_register{
+  margin:  auto;
+
+}
 .arelymember{
   text-decoration: underline;
   font-size: 15px;
@@ -761,10 +765,8 @@ border-width: 1px;
 
 .formhorizontal.active{
   display: block;
-  z-index: 999;
-  position: absolute;
-  
-  
+  z-index: 100;
+  position: relative;
   
 }
 .formhorizontal.inactive{

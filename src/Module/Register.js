@@ -74,7 +74,7 @@ class Register extends Component {
   };
   render() {
     return (
-      <div>
+      <div className="all_register">
         <div
           className="overlay_register"
           style={{ display: +this.props.isShow ? "block" : "none" }}
