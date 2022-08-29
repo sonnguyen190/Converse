@@ -12,7 +12,7 @@ class AllProduct extends Component {
   }
 
   componentDidMount = () => {
-    axios.get("http://localhost:4000/All").then((response) => {
+    axios.get("http://localhost:8081/converse/All").then((response) => {
       this.setState((prev) => {
         prev.list_san_pham = response.data;
         return prev;

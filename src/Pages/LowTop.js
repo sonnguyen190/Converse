@@ -12,7 +12,7 @@ class LowTop extends Component {
   }
 
   componentDidMount = () => {
-    axios.get("http://localhost:4000/LowTop").then((response) => {
+    axios.get("http://localhost:8081/converse/LowTop").then((response) => {
       this.setState((prev) => {
         prev.list_san_pham = response.data;
         return prev;
