@@ -41,13 +41,13 @@ class SignIn extends Component {
           </div>
           <div>
             <p>
-              Already a member?{" "}
+              Not a member?{" "}
               <p
                 className="arelymember"
                 style={{ display: "inline" }}
-                onClick={this.props.change_signin}
+                onClick={this.props.change_signup}
               >
-                SIGN IN
+                SIGN UP
               </p>
             </p>
           </div>

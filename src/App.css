@@ -755,6 +755,7 @@ border-width: 1px;
 }
 .all_register{
   margin:  auto;
+  top: 20px;
 
 }
 .arelymember{
@@ -777,23 +778,23 @@ border-width: 1px;
   
 }
 .title_register div{
-  padding: 20px 20px;
+  padding: 10px 10px;
   font-weight: 700;
-  font-size: 23px;
+  font-size: 20px;
   color: gray;
   cursor: pointer;
 }
 
 .label_signup{
   width: 100%;
-  padding: 20px;
+  padding: 10px;
   
 }
 .label_signup_gender{
   width: 30%;
 }
 .form-group_signup{
-  padding: 15px;
+  padding: 5px;
 }
 .form-control.success{
   background-color: greenyellow;

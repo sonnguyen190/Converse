@@ -67,25 +67,6 @@ class SignUp extends Component {
         </div>
 
         <div className="form-group">
-          <div>
-            <TextField
-              className="label_signup_gender"
-              name="gioi_tinh"
-              id="standard-select-currency"
-              select
-              label="Gender"
-              onChange={this.props.handleChange}
-              helperText=" select your gender"
-              variant="standard"
-            >
-              <MenuItem value="male">Male</MenuItem>
-              <MenuItem value="female">Female</MenuItem>
-              <MenuItem value="orther">Order</MenuItem>
-            </TextField>
-          </div>
-        </div>
-
-        <div className="form-group">
           <div className="button_submit_signin">
             <button type="submit">Sign Up</button>
           </div>

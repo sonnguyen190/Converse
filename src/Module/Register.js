@@ -96,7 +96,7 @@ class Register extends Component {
           </div>
           {this.state.is_active == "signin" ? (
             <div>
-              <SignIn></SignIn>
+              <SignIn change_signup={this.change_signup}></SignIn>
             </div>
           ) : (
             <div>
