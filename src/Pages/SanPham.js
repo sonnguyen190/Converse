@@ -12,7 +12,7 @@ class SanPham extends Component {
   }
 
   componentDidMount = () => {
-    axios.get("http://localhost:4000/HighTop").then((response) => {
+    axios.get("http://localhost:8081/converse/HighTop").then((response) => {
       this.setState((prev) => {
         prev.list_san_pham = response.data;
         return prev;

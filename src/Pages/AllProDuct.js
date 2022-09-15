@@ -27,7 +27,13 @@ class AllProduct extends Component {
 
           <div className="main_right">
             {this.state.list_san_pham.map((sp) => {
-              return <ListSanPham key={sp.id} listsp={sp} />;
+              return (
+                <ListSanPham
+                  key={sp.id}
+                  listsp={sp}
+                  handleaddToCart={this.props.handleaddToCart}
+                />
+              );
             })}
           </div>
         </div>
