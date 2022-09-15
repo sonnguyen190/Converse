@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import SignUp from "./SignUp";
 import SignIn from "./SignIn";
-
+const axios = require("axios").default;
 class Register extends Component {
   constructor(props) {
     super(props);
@@ -17,8 +17,32 @@ class Register extends Component {
       gioi_tinh: "Nữ",
       is_active: "signin",
     };
+    this.handleSubmitForm = this.handleSubmitForm.bind(this);
   }
+  handleSubmitForm = (event) => {
+    console.log(this.props.email);
 
+    // event.preventDefault();
+
+    axios
+      .post("http://localhost:8081/converse/signup", {
+        email: this.props.state.email,
+        password: this.props.password,
+        repassword: this.props.repassword,
+        name: this.props.ho_ten,
+      })
+      .then((response) => {
+        // handle success
+        console.log(response);
+      })
+      .catch((error) => {
+        // handle error
+        console.log(error);
+      })
+      .then(function () {
+        // always executed
+      });
+  };
   change_signup = () => {
     this.setState((prev) => {
       prev.is_active = "signup";
@@ -42,12 +66,10 @@ class Register extends Component {
   };
 
   handleChange = (e) => {
-    var flag = "";
     if (e.target.name === "email" && e.target.value) {
       let re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
       if (re.test(e.target.value)) {
         if (e.target.value) {
-          flag = true;
           this.setState((pre) => {
             pre["valid_" + e.target.name] = true;
             return pre;
@@ -72,6 +94,44 @@ class Register extends Component {
       return pre;
     });
   };
+
+  // handleSubmitForm = (event) => {
+  //   console.log("hahahahha");
+  //   event.preventDefault();
+  //   const params = JSON.stringify({
+  //     email: this.state.email,
+  //     password: this.state.password,
+  //   });
+  //   console.log(params);
+
+  //   axios
+  //     .post("http://localhost:8081/converse/signup", params, {
+  //       headers: {
+  //         "content-type": "application/json",
+  //       },
+  //     })
+  //     .then(function (response) {
+  //       console.log(response);
+  //     })
+
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // };
+  // const user = {
+  //   email: this.state.email,
+  //   password: this.state.password,
+  //   repassword: this.state.repassword,
+  //   name: this.state.ho_ten,
+  // };
+
+  // axios
+  //   .post(`http://localhost:8081/converse/signup`, { user })
+  //   .then((res) => {
+  //     console.log(res);
+  //     console.log(res.data);
+  //   });
+
   render() {
     return (
       <div className="all_register">
@@ -101,12 +161,12 @@ class Register extends Component {
           ) : (
             <div>
               <SignUp
+                handleSubmitForm={this.handleSubmitForm}
                 change_signin={this.change_signin}
                 email={this.state.email}
                 password={this.state.password}
                 repassword={this.state.repassword}
                 ho_ten={this.state.ho_ten}
-                gioi_tinh={this.state.gioi_tinh}
                 handleChange={this.handleChange}
                 valid_email={this.state.valid_email}
               ></SignUp>

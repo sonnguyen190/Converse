@@ -1,18 +1,17 @@
 import React, { Component } from "react";
 import TextField from "@mui/material/TextField";
-import MenuItem from "@mui/material/MenuItem";
 
 class SignUp extends Component {
   render() {
     return (
-      <div>
+      <form onSubmit={this.props.handleSubmitForm}>
         <div className="form-group">
           <div className="form-group_signup">
             <TextField
               className="label_signup"
               type="email"
               name="email"
-              id="standard-basic"
+              id="email"
               label="Email"
               variant="standard"
               value={this.props.email}
@@ -27,7 +26,7 @@ class SignUp extends Component {
               className="label_signup"
               type="password"
               name="password"
-              id="standard-basic"
+              id="password"
               label="Password"
               variant="standard"
               value={this.props.password}
@@ -42,7 +41,7 @@ class SignUp extends Component {
               className="label_signup"
               type="password"
               name="repassword"
-              id="standard-basic"
+              id="repassword"
               label="Confirm Password"
               variant="standard"
               value={this.props.repassword}
@@ -57,7 +56,7 @@ class SignUp extends Component {
               className="label_signup"
               type="text"
               name="ho_ten"
-              id="standard-basic"
+              id="ho_ten"
               label="User Name"
               variant="standard"
               value={this.props.ho_ten}
@@ -68,7 +67,9 @@ class SignUp extends Component {
 
         <div className="form-group">
           <div className="button_submit_signin">
-            <button type="submit">Sign Up</button>
+            <button type="submit" onClick={this.props.handleSubmitForm}>
+              Sign Up
+            </button>
           </div>
           <div>
             <p>
@@ -90,7 +91,7 @@ class SignUp extends Component {
             Policy.
           </p>
         </div>
-      </div>
+      </form>
     );
   }
 }

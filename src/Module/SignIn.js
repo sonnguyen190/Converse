@@ -11,7 +11,7 @@ class SignIn extends Component {
               className="label_signup"
               type="email"
               name="email"
-              id="standard-basic"
+              id="email"
               label="Email"
               variant="standard"
               value={this.props.email}
@@ -26,7 +26,7 @@ class SignIn extends Component {
               className="label_signup"
               type="password"
               name="password"
-              id="standard-basic"
+              id="password"
               label="Password"
               variant="standard"
               value={this.props.password}
