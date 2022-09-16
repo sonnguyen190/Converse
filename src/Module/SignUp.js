@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 class SignUp extends Component {
   render() {
     return (
-      <form onSubmit={this.props.handleSubmitForm}>
+      <form>
         <div className="form-group">
           <div className="form-group_signup">
             <TextField
@@ -32,6 +32,11 @@ class SignUp extends Component {
               value={this.props.password}
               onChange={this.props.handleChange}
             />
+            {this.props.valid_password == false ? (
+              <p id="valid_password">Password is requied</p>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
 
@@ -47,6 +52,11 @@ class SignUp extends Component {
               value={this.props.repassword}
               onChange={this.props.handleChange}
             />
+            {this.props.valid_password == false ? (
+              <p id="valid_password">Password is requied</p>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
 
@@ -67,9 +77,7 @@ class SignUp extends Component {
 
         <div className="form-group">
           <div className="button_submit_signin">
-            <button type="submit" onClick={this.props.handleSubmitForm}>
-              Sign Up
-            </button>
+            <button onClick={this.props.handleSubmitForm}>Sign Up</button>
           </div>
           <div>
             <p>

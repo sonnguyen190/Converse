@@ -9,39 +9,51 @@ class Register extends Component {
       email: "",
       valid_email: "",
       password: "",
-      valid_password: "",
+      valid_password: "true",
       repassword: "",
-      valid_re_password: "",
       ho_ten: "",
-      valid_ho_ten: "",
-      gioi_tinh: "Nữ",
       is_active: "signin",
     };
     this.handleSubmitForm = this.handleSubmitForm.bind(this);
   }
   handleSubmitForm = (event) => {
-    console.log(this.props.email);
-
-    // event.preventDefault();
-
-    axios
-      .post("http://localhost:8081/converse/signup", {
-        email: this.props.state.email,
-        password: this.props.password,
-        repassword: this.props.repassword,
-        name: this.props.ho_ten,
-      })
-      .then((response) => {
-        // handle success
-        console.log(response);
-      })
-      .catch((error) => {
-        // handle error
-        console.log(error);
-      })
-      .then(function () {
-        // always executed
+    event.preventDefault();
+    if (this.state.password != this.state.repassword) {
+      this.setState((pre) => {
+        pre.valid_password = false;
+        return pre;
       });
+    } else {
+      this.setState((pre) => {
+        pre.valid_password = true;
+        return pre;
+      });
+
+      axios
+        .post(
+          "http://localhost:8081/converse/signup",
+          {
+            user_name: this.state.email,
+            password: this.state.password,
+            name: this.state.ho_ten,
+            userRole: "user",
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Basic xxxxxxxxxxxxxxxxxxx",
+            },
+          }
+        )
+        .then((response) => {
+          alert("đăng kí thành công");
+          console.log(response);
+        })
+        .catch((error) => {
+          alert("đã xảy ra lỗi");
+          console.log(error);
+        });
+    }
   };
   change_signup = () => {
     this.setState((prev) => {
@@ -161,6 +173,7 @@ class Register extends Component {
           ) : (
             <div>
               <SignUp
+                valid_password={this.state.valid_password}
                 handleSubmitForm={this.handleSubmitForm}
                 change_signin={this.change_signin}
                 email={this.state.email}

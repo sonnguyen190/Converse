@@ -1197,6 +1197,14 @@ background-color: white;
   color: #757575;
   font-size: 15px;
 }
+
+#valid_password{
+  color: red;
+  margin: 0;
+  padding: 0;
+  height: 10px;
+  font-size: 10px;
+}
 /* 
 bo quang cao =====================================================*/
 /* @media screen and (max-width:1200px){
