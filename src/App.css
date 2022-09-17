@@ -22,12 +22,13 @@
   bottom: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.3);
-  z-index: 1;
+  z-index: 2;
 }
 
 .Topbanner_row {
   display: flex;
   background: #f4f4f4;
+  
 }
 .Topbanner_left {
   padding: 15px 10px 15px 50px;
@@ -98,8 +99,8 @@
   background-color: white;
  position: fixed;
  max-width: 1440px;
-  transition: ease 0.2s;
-  z-index: 999;
+  transition: ease 0.1s;
+  z-index: 2;
 }
 
 .Navbar_ul_left {
@@ -741,7 +742,7 @@ border-width: 1px;
 }
 .formhorizontal{
   justify-content: center;
-  height: 750px;
+  height: 500px;
   width: 450px;
   
   transition: ease 0.5s;
@@ -749,7 +750,7 @@ border-width: 1px;
   background-color: #f4f4f4;
   
   margin: 0 auto;
-  padding: 30px;
+  padding: 10px 20px;
   transition: ease 0.5s;
   
 }
@@ -816,7 +817,7 @@ background-color: white;
   left: 0px;
   bottom: 0px;
   position: fixed;
-  z-index: 100;
+  z-index: 2;
 }
 
 .checkbox_loc{
@@ -1020,7 +1021,7 @@ background-color: white;
 .popup_are_you_sure_delete_all_cart{
   text-align: center;
   position: absolute;
-  z-index: 999;
+  z-index: 100;
   top: 20px;
   background-color: white;
   border-radius: 2px;
