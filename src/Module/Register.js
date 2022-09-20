@@ -28,7 +28,9 @@ class Register extends Component {
         pre.valid_password = true;
         return pre;
       });
-
+      // var basicAu =
+      //   "Basic " + btoa(this.state.email + ":" + this.state.password);
+      // console.log(basicAu);
       axios
         .post(
           "http://localhost:8081/converse/signup",
@@ -41,7 +43,6 @@ class Register extends Component {
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Basic xxxxxxxxxxxxxxxxxxx",
             },
           }
         )

@@ -16,6 +16,7 @@ class ListSanPham extends Component {
   handleaddToCartProcess = () => {
     this.props.handleaddToCart(this.props.listsp);
   };
+
   render() {
     return (
       <div className="list_san_pham">
@@ -23,21 +24,29 @@ class ListSanPham extends Component {
           className="image_item"
           style={{ backgroundImage: `url(${this.props.listsp.hinh_giay})` }}
         >
-          <div className="overlay_addtocart">
+          <a
+            style={{ display: "block" }}
+            className="overlay_addtocart"
+            href={`/Detail/${this.props.listsp.id}`}
+          >
             <div
               className="overlay_addtocart_div_button"
               onClick={this.handleaddToCartProcess}
             >
               <div className="overlay_addtocart_div_button_grid">
-                <div className="overlay_addtocart_div_button_grid1">
+                <a
+                  style={{ display: "block" }}
+                  className="overlay_addtocart_div_button_grid1"
+                  href={`/Detail/${this.props.listsp.id}`}
+                >
                   Add to cart
-                </div>
+                </a>
                 <div className="overlay_addtocart_div_button_grid2">
                   <AddShoppingCartIcon />
                 </div>
               </div>
             </div>
-          </div>
+          </a>
         </div>
 
         <span>{this.props.listsp.ten_giay}</span>

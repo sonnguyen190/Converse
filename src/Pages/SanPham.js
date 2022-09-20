@@ -17,6 +17,7 @@ class SanPham extends Component {
         prev.list_san_pham = response.data;
         return prev;
       });
+      this.props.list_Shoes = this.state.list_san_pham;
     });
   };
   render() {
@@ -27,13 +28,7 @@ class SanPham extends Component {
 
           <div className="main_right">
             {this.state.list_san_pham.map((sp) => {
-              return (
-                <ListSanPham
-                  key={sp.id}
-                  listsp={sp}
-                  handleaddToCart={this.props.handleaddToCart}
-                />
-              );
+              return <ListSanPham key={sp.id} listsp={sp} />;
             })}
           </div>
         </div>

@@ -10,6 +10,7 @@ import AllProduct from "../Pages/AllProDuct";
 import GioHang from "../Pages/GioHang";
 
 import TrangChu from "../Pages/TrangChu";
+import Detail from "../Pages/Detail";
 
 class Content extends Component {
   constructor(props) {
@@ -196,6 +197,11 @@ class Content extends Component {
             path="/All"
             element={<AllProduct handleaddToCart={this.addToCart} />}
           ></Route>
+          <Route
+            path="/Detail/:id"
+            element={<Detail mang_gio_hang={this.state.mang_gio_hang} />}
+          ></Route>
+
           <Route
             path="/Cart"
             element={

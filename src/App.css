@@ -4,7 +4,13 @@
   padding: 0px;
 }
 
-
+.image_item_Detail{
+  display: inline-block;
+  height: 350px;
+  width: 200px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
 .grid{
   width: 100%;
   display: block;

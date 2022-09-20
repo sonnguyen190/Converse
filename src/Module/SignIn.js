@@ -12,7 +12,7 @@ class SignIn extends Component {
               type="email"
               name="email"
               id="email"
-              label="Email"
+              label="User Name"
               variant="standard"
               value={this.props.email}
               onChange={this.props.handleChange}

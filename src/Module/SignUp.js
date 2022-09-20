@@ -9,10 +9,10 @@ class SignUp extends Component {
           <div className="form-group_signup">
             <TextField
               className="label_signup"
-              type="email"
+              type="text"
               name="email"
               id="email"
-              label="Email"
+              label="User Name"
               variant="standard"
               value={this.props.email}
               onChange={this.props.handleChange}
@@ -67,7 +67,7 @@ class SignUp extends Component {
               type="text"
               name="ho_ten"
               id="ho_ten"
-              label="User Name"
+              label="Full Name"
               variant="standard"
               value={this.props.ho_ten}
               onChange={this.props.handleChange}
