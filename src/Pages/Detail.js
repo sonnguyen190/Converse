@@ -15,14 +15,12 @@ class Detail extends Component {
 
   componentDidMount = () => {
     let { id } = this.props.params;
-    axios
-      .get(`http://localhost:8081/converse/Detail/${id}`)
-      .then((response) => {
-        this.setState((prev) => {
-          prev.detail = response.data;
-          return prev;
-        });
+    axios.get(`http://localhost:8080/api/shoes/${id}`).then((response) => {
+      this.setState((prev) => {
+        prev.detail = response.data;
+        return prev;
       });
+    });
   };
   render() {
     return (

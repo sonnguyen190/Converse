@@ -12,7 +12,7 @@ class PlatForms extends Component {
   }
 
   componentDidMount = () => {
-    axios.get("http://localhost:8081/converse/Platforms").then((response) => {
+    axios.get("http://localhost:8080/converse/Platforms").then((response) => {
       this.setState((prev) => {
         prev.list_san_pham = response.data;
         return prev;

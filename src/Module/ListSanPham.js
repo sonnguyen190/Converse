@@ -7,12 +7,7 @@ class ListSanPham extends Component {
       tien: "",
     };
   }
-  componentDidMount = () => {
-    var chuoi = "1212121";
 
-    chuoi.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
-    console.log(chuoi);
-  };
   handleaddToCartProcess = () => {
     this.props.handleaddToCart(this.props.listsp);
   };
@@ -22,24 +17,21 @@ class ListSanPham extends Component {
       <div className="list_san_pham">
         <div
           className="image_item"
-          style={{ backgroundImage: `url(${this.props.listsp.hinh_giay})` }}
+          style={{ backgroundImage: `url(${this.props.listsp.image})` }}
         >
           <a
             style={{ display: "block" }}
             className="overlay_addtocart"
             href={`/Detail/${this.props.listsp.id}`}
           >
-            <div
-              className="overlay_addtocart_div_button"
-              onClick={this.handleaddToCartProcess}
-            >
+            <div className="overlay_addtocart_div_button">
               <div className="overlay_addtocart_div_button_grid">
                 <a
                   style={{ display: "block" }}
                   className="overlay_addtocart_div_button_grid1"
                   href={`/Detail/${this.props.listsp.id}`}
                 >
-                  Add to cart
+                  View Detail
                 </a>
                 <div className="overlay_addtocart_div_button_grid2">
                   <AddShoppingCartIcon />
@@ -48,9 +40,8 @@ class ListSanPham extends Component {
             </div>
           </a>
         </div>
-
-        <span>{this.props.listsp.ten_giay}</span>
-        <div> {this.props.listsp.price} VND</div>
+        <span>{this.props.listsp.name}</span>
+        <div>${this.props.listsp.price}</div>
       </div>
     );
   }

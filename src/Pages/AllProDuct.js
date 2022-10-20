@@ -12,7 +12,8 @@ class AllProduct extends Component {
   }
 
   componentDidMount = () => {
-    axios.get("http://localhost:8081/converse/All").then((response) => {
+    axios.get("http://localhost:8080/api/shoes").then((response) => {
+      console.log(response);
       this.setState((prev) => {
         prev.list_san_pham = response.data;
         return prev;

@@ -894,7 +894,7 @@ background-color: white;
 .main_right{
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
-  margin-top: 80px;
+  margin-top: 40px;
 }
 .Kids_Gender{
   border-style: ridge  ;
@@ -925,7 +925,7 @@ background-color: white;
   background-size: 100% 100%;
   background-repeat: no-repeat;
   width: 100%;
-  height: 336px;
+  height: 306px;
   cursor: pointer;
 }
 
@@ -953,21 +953,30 @@ background-color: white;
   background-color: white;
   color: #000;
   display: inline-block;
-  width: 50%;
-  
+  width: 60%;
+  text-decoration: none;
   font-size: .875rem;
-  top: 80%;
-  left: 40%;
+  top: 75%;
+  left: 30%;
 }
 .overlay_addtocart_div_button_grid{
   display: flex;
+  text-decoration: none;
+
+}
+.overlay_addtocart_div_button_grid:hover{
+  display: flex;
+  text-decoration: none;
+  
 }
 
 .overlay_addtocart_div_button:hover{
   background-color: black;
+  text-decoration: none;
   color: white;
 }
 .overlay_addtocart_div_button_grid1{
+  color: #000;
   text-align: center;
   padding: 10px 5px;
   width: 200px;
@@ -975,6 +984,17 @@ background-color: white;
   font-size: 15px;
   font-weight: 600;
 }
+.overlay_addtocart_div_button_grid1:hover{
+  text-decoration: none;
+  color: white;
+  text-align: center;
+  padding: 10px 5px;
+  width: 200px;
+  border-right: 1px #757575 solid;
+  font-size: 15px;
+  font-weight: 600;
+}
+
 .overlay_addtocart_div_button_grid2{
   padding: 10px 10px;
 
