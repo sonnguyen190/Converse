@@ -45,7 +45,6 @@ class Content extends Component {
       for (var i = 0; i < mang.length; i++) {
         if (mang[i].id == item.id) {
           mang[i].quantity += 1;
-
           flag = 1;
         }
       }

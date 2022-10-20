@@ -1,6 +1,30 @@
 import React, { Component } from "react";
 
 class List_item_shopby extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isActive: "",
+    };
+  }
+  componentDidMount = () => {
+    window.addEventListener("scroll", this.isMouseDown);
+  };
+  isMouseDown = () => {
+    var reveals = document.querySelectorAll(".Trending_style");
+
+    for (var i = 0; i < reveals.length; i++) {
+      var windowHeight = window.innerHeight;
+      var elementTop = reveals[i].getBoundingClientRect().top;
+      var elementVisible = 150;
+
+      if (elementTop < windowHeight - elementVisible) {
+        reveals[i].classList.add("active");
+      } else {
+        reveals[i].classList.remove("active");
+      }
+    }
+  };
   render() {
     return (
       <div className="grid wide">

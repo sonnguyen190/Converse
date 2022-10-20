@@ -15,7 +15,6 @@ class Detail extends Component {
 
   componentDidMount = () => {
     let { id } = this.props.params;
-    console.log(id);
     axios
       .get(`http://localhost:8081/converse/Detail/${id}`)
       .then((response) => {
@@ -28,10 +27,17 @@ class Detail extends Component {
   render() {
     return (
       <div className="grid wide">
-        <div
-          className="image_item_Detail"
-          style={{ backgroundImage: `url(${this.state.detail.hinh_giay})` }}
-        ></div>
+        <div className="All_Detail">
+          <div>
+            <div
+              className="image_item_Detail"
+              style={{ backgroundImage: `url(${this.state.detail.hinh_giay})` }}
+            ></div>
+          </div>
+          <div>{this.state.detail.ten_giay}</div>
+
+          <div>{this.state.detail.price}</div>
+        </div>
       </div>
     );
   }
