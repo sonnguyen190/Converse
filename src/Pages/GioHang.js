@@ -17,7 +17,7 @@ class GioHang extends Component {
                 src="https://www.novelty.com.vn/assets/empty_cart.jpeg"
                 alt=""
               />
-              <Link className="link_icon_cart" to={"/HighTop"}>
+              <Link className="link_icon_cart" to={"/All"}>
                 <button className="button_quay_lai">Tiếp Tục Mua Hàng</button>
               </Link>
             </div>

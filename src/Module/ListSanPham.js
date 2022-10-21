@@ -19,26 +19,25 @@ class ListSanPham extends Component {
           className="image_item"
           style={{ backgroundImage: `url(${this.props.listsp.image})` }}
         >
-          <a
-            style={{ display: "block" }}
-            className="overlay_addtocart"
-            href={`/Detail/${this.props.listsp.id}`}
-          >
+          <div style={{ display: "block" }} className="overlay_addtocart">
             <div className="overlay_addtocart_div_button">
               <div className="overlay_addtocart_div_button_grid">
                 <a
                   style={{ display: "block" }}
                   className="overlay_addtocart_div_button_grid1"
-                  href={`/Detail/${this.props.listsp.id}`}
+                  href={`/Detail/${this.props.listsp.code}`}
                 >
                   View Detail
                 </a>
-                <div className="overlay_addtocart_div_button_grid2">
+                <div
+                  onClick={this.handleaddToCartProcess}
+                  className="overlay_addtocart_div_button_grid2"
+                >
                   <AddShoppingCartIcon />
                 </div>
               </div>
             </div>
-          </a>
+          </div>
         </div>
         <span>{this.props.listsp.name}</span>
         <div>${this.props.listsp.price}</div>
