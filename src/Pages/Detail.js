@@ -11,6 +11,7 @@ class Detail extends Component {
     super(props);
     this.state = {
       detail: [],
+      listimg: [],
     };
   }
 
@@ -19,13 +20,10 @@ class Detail extends Component {
     axios
       .get(`http://localhost:8080/api/shoess?text=${id}`)
       .then((response) => {
-        var obj = response.data.listimage[1];
-
-        console.log(obj);
         console.log(response.data);
-
         this.setState((prev) => {
           prev.detail = response.data;
+          prev.listimg = response.data.listimage;
           return prev;
         });
       });
@@ -35,7 +33,7 @@ class Detail extends Component {
     return (
       <div className="grid wide">
         <div className="All_Detail">
-          <AsNavFor detail={this.state.detail} />
+          <AsNavFor listimg={this.state.listimg} detail={this.state.detail} />
 
           <div className="title_detail">
             <h3>${this.state.detail.price}</h3>
