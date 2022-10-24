@@ -56,7 +56,7 @@ export default function AsNavFor({ listimg, detail }) {
         <Slider
           asNavFor={nav1}
           ref={(slider2) => setNav2(slider2)}
-          slidesToShow={3}
+          slidesToShow={4}
           swipeToSlide={true}
           focusOnSelect={true}
           arrows={false}
