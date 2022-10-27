@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 class Slide extends Component {
   render() {
     return (
@@ -22,9 +23,9 @@ class Slide extends Component {
               </p>
               <ul className="ul_slide_content">
                 <li className="Shop_now">
-                  <a className="Shop_now_a" href="./All">
+                  <Link className="Shop_now_a" to="./All" relative="path">
                     Shop Now
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>

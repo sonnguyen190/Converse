@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import { Link } from "react-router-dom";
 class ListSanPham extends Component {
   constructor(props) {
     super(props);
@@ -22,13 +23,13 @@ class ListSanPham extends Component {
           <div style={{ display: "block" }} className="overlay_addtocart">
             <div className="overlay_addtocart_div_button">
               <div className="overlay_addtocart_div_button_grid">
-                <a
+                <Link
                   style={{ display: "block" }}
                   className="overlay_addtocart_div_button_grid1"
-                  href={`/Detail/${this.props.listsp.code}`}
+                  to={`/Detail/${this.props.listsp.code}`}
                 >
                   View Detail
-                </a>
+                </Link>
                 <div
                   onClick={this.handleaddToCartProcess}
                   className="overlay_addtocart_div_button_grid2"

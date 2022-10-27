@@ -6,6 +6,7 @@ class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      username: "",
       email: "",
       valid_email: "",
       password: "",
@@ -28,17 +29,15 @@ class Register extends Component {
         pre.valid_password = true;
         return pre;
       });
-      // var basicAu =
-      //   "Basic " + btoa(this.state.email + ":" + this.state.password);
-      // console.log(basicAu);
+
       axios
         .post(
-          "http://localhost:8081/converse/signup",
+          "http://localhost:8080/auth/signup",
           {
-            user_name: this.state.email,
+            username: this.state.username,
             password: this.state.password,
             name: this.state.ho_ten,
-            userRole: "user",
+            email: this.state.email,
           },
           {
             headers: {
@@ -48,10 +47,55 @@ class Register extends Component {
         )
         .then((response) => {
           alert("đăng kí thành công");
-          console.log(response);
+          var basicAu =
+            "Basic " +
+            btoa(response.data.username + ":" + response.data.password);
+          const { id, name, role, username, email } = response.data;
+          const user = { id, name, role, username, email };
+
+          localStorage.setItem("user", JSON.stringify());
+          window.location.reload(false);
         })
         .catch((error) => {
           alert("đã xảy ra lỗi");
+          console.log(error);
+        });
+    }
+  };
+
+  handleSubmitFormSignIn = (event) => {
+    event.preventDefault();
+    if (!(this.state.username && this.state.password)) {
+      alert("Error");
+    } else {
+      console.log(this.state.username);
+      console.log(this.state.password);
+      axios
+        .post(
+          "http://localhost:8080/auth/authenticate",
+          {
+            username: this.state.username,
+            password: this.state.password,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((response) => {
+          alert("Đăng Nhập Thành Công");
+          var basicAu =
+            "Basic " +
+            btoa(response.data.username + ":" + response.data.password);
+          const { id, name, role, email } = response.data;
+          const user = { id, name, role, basicAu, email };
+          console.log(user);
+          localStorage.setItem("user", JSON.stringify(user));
+          window.location.reload(false);
+        })
+        .catch((error) => {
+          alert("Valid Pass Or Username");
           console.log(error);
         });
     }
@@ -108,43 +152,6 @@ class Register extends Component {
     });
   };
 
-  // handleSubmitForm = (event) => {
-  //   console.log("hahahahha");
-  //   event.preventDefault();
-  //   const params = JSON.stringify({
-  //     email: this.state.email,
-  //     password: this.state.password,
-  //   });
-  //   console.log(params);
-
-  //   axios
-  //     .post("http://localhost:8081/converse/signup", params, {
-  //       headers: {
-  //         "content-type": "application/json",
-  //       },
-  //     })
-  //     .then(function (response) {
-  //       console.log(response);
-  //     })
-
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // };
-  // const user = {
-  //   email: this.state.email,
-  //   password: this.state.password,
-  //   repassword: this.state.repassword,
-  //   name: this.state.ho_ten,
-  // };
-
-  // axios
-  //   .post(`http://localhost:8081/converse/signup`, { user })
-  //   .then((res) => {
-  //     console.log(res);
-  //     console.log(res.data);
-  //   });
-
   render() {
     return (
       <div className="all_register">
@@ -169,11 +176,18 @@ class Register extends Component {
           </div>
           {this.state.is_active == "signin" ? (
             <div>
-              <SignIn change_signup={this.change_signup}></SignIn>
+              <SignIn
+                password={this.state.password}
+                username={this.state.username}
+                handleChange={this.handleChange}
+                handleSubmitFormSignIn={this.handleSubmitFormSignIn}
+                change_signup={this.change_signup}
+              ></SignIn>
             </div>
           ) : (
             <div>
               <SignUp
+                username={this.state.username}
                 valid_password={this.state.valid_password}
                 handleSubmitForm={this.handleSubmitForm}
                 change_signin={this.change_signin}

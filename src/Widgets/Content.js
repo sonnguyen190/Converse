@@ -198,7 +198,12 @@ class Content extends Component {
           ></Route>
           <Route
             path="/Detail/:id"
-            element={<Detail mang_gio_hang={this.state.mang_gio_hang} />}
+            element={
+              <Detail
+                handleaddToCart={this.addToCart}
+                mang_gio_hang={this.state.mang_gio_hang}
+              />
+            }
           ></Route>
 
           <Route

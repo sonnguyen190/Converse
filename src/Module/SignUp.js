@@ -10,11 +10,11 @@ class SignUp extends Component {
             <TextField
               className="label_signup"
               type="text"
-              name="email"
-              id="email"
+              name="username"
+              id="username"
               label="User Name"
               variant="standard"
-              value={this.props.email}
+              value={this.props.username}
               onChange={this.props.handleChange}
             />
           </div>
@@ -70,6 +70,20 @@ class SignUp extends Component {
               label="Full Name"
               variant="standard"
               value={this.props.ho_ten}
+              onChange={this.props.handleChange}
+            />
+          </div>
+        </div>
+        <div className="form-group">
+          <div className="form-group_signup">
+            <TextField
+              className="label_signup"
+              type="text"
+              name="email"
+              id="email"
+              label="Email"
+              variant="standard"
+              value={this.props.email}
               onChange={this.props.handleChange}
             />
           </div>

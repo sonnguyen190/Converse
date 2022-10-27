@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class List_item_shopby extends Component {
   constructor(props) {
@@ -31,31 +32,31 @@ class List_item_shopby extends Component {
         <div className="Trending_Style_all">
           <div className="Trending_style">
             <div className="Trending_style_img5 ">
-              <a href="/HighTop">
+              <Link to="/HighTop">
                 <div className="overlay_trending">SHOP HIGH TOPS</div>
                 <div className="Trending_style_span">HIGH TOPS</div>
-              </a>
+              </Link>
             </div>
           </div>
           <div className="Trending_style">
             <div className="Trending_style_img6">
-              <a href="/LowTop">
+              <Link to="/LowTop">
                 <div className="overlay_trending">
                   <span className="overlay_trending_span">SHOP LOW TOPS</span>
                 </div>
                 <div className="Trending_style_span">LOW TOPS</div>
-              </a>
+              </Link>
             </div>
             <div></div>
           </div>
           <div className="Trending_style">
             <div className="Trending_style_img7">
-              <a href="/PlatForms">
+              <Link to="/PlatForms">
                 <div className="overlay_trending">
                   <span className="overlay_trending_span">SHOP PLATFORMS</span>
                 </div>
                 <div className="Trending_style_span">PLATFORMS</div>
-              </a>
+              </Link>
             </div>
             <div></div>
           </div>

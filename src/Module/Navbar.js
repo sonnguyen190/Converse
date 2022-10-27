@@ -14,6 +14,9 @@ class Navbar extends Component {
       isShow: false,
       scrollY: 60,
       width: 100,
+      user: {},
+      isShowlogout: false,
+      isAuthen: false,
     };
   }
   handleIsShow = () => {
@@ -21,10 +24,56 @@ class Navbar extends Component {
       isShow: !this.state.isShow,
     });
   };
+  // handleIsShowLogOut = () => {
+  //   console.log(this.state.user != {});
+  //   if (this.state.user) {
+  //     this.setState({
+  //       logout: !this.state.logout,
+  //     });
+  //   } else {
+  //     this.setState({
+  //       logout: false,
+  //     });
+  //   }
+  // };
   componentDidMount = () => {
     window.addEventListener("scroll", this.isMouseDown);
+    const user = JSON.parse(localStorage.getItem("user"));
+    const authen = localStorage.getItem("user") !== null;
+    this.styleauthen(authen, user);
   };
 
+  hanndleOnlickShowLogout = () => {
+    this.setState({
+      ...this.state,
+      isShowlogout: !this.state.isShowlogout,
+    });
+  };
+
+  styleauthen = (isauthen, user) => {
+    if (isauthen) {
+      this.setState({
+        ...this.state,
+        isAuthen: true,
+        user: user,
+      });
+    } else {
+      this.setState({
+        ...this.state,
+        isAuthen: false,
+        user: {},
+      });
+    }
+  };
+  handleSignOut = () => {
+    localStorage.removeItem("user");
+    this.setState({
+      ...this.state,
+      isAuthen: false,
+      user: {},
+    });
+    window.location.reload(false);
+  };
   isMouseDown = () => {
     const scrollWindowHeight = window.pageYOffset;
     // console.log(scrollWindowHeight);
@@ -58,7 +107,7 @@ class Navbar extends Component {
               <DensityMediumIcon />
             </label>
             <div className="Navbar_logo">
-              <a href="/"> CONVERSE</a>
+              <Link to="/"> CONVERSE</Link>
             </div>
             <div className=" navbar-collapse collapsenav">
               <ul className="navbar-nav mr-auto ">
@@ -86,12 +135,35 @@ class Navbar extends Component {
               </ul>
               <form className="form-inline my-2 my-lg-0 navbar_form">
                 <div className="Navbar_Sign_in">
-                  <div className="Sign_in" onClick={this.handleIsShow}>
-                    <span className="span_sign_in">Sign In</span>
-                    <div className="span_icon_user">
-                      <PersonOutlineIcon />
+                  {this.state.isAuthen == true ? (
+                    <div
+                      className="Sign_in"
+                      onClick={this.hanndleOnlickShowLogout}
+                    >
+                      <span className="span_logincomplete">
+                        {this.state.user.name}
+                      </span>
+
+                      <div className="span_icon_user">
+                        <PersonOutlineIcon />
+                      </div>
+                      {this.state.isShowlogout == true ? (
+                        <div className="logout_nav">
+                          <div onClick={this.handleSignOut}>Sign Out</div>
+                        </div>
+                      ) : (
+                        <></>
+                      )}
                     </div>
-                  </div>
+                  ) : (
+                    <div className="Sign_in" onClick={this.handleIsShow}>
+                      <span className="span_sign_in">Sign In</span>
+
+                      <div className="span_icon_user">
+                        <PersonOutlineIcon />
+                      </div>
+                    </div>
+                  )}
 
                   <div className="icon_tim">
                     <FavoriteBorderIcon />

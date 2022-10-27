@@ -903,10 +903,63 @@ background-color: white;
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
-
+.Detail_btn_addtocart{
+  margin-top: 10px;
+  background-color: white;
+  border: black solid 1px;
+  padding: 5px;
+  width: 200px;
+  font-weight: 500;
+  transition: ease 0.3s;
+}
+.color_detail{
+  margin: 5px 5px;
+  height: 20px;
+  border: 1px solid black;
+  border-radius: 200px;
+  width: 20px;
+}
+.popup_logout{
+  position: absolute;
+  background-color: #3837d3;
+  top: 200px;
+}
+.span_logincomplete{
+  font-size: 17px;
+  font-weight: 500;
+}
+.logout_nav{
+  position: absolute;
+  top: 50px;
+  font-size: 20px;
+  background-color: white;
+  width: 150px;
+  padding: 10px;
+  border: gray 1px solid;
+  
+}
+.Detail_btn_addtocart:hover{
+  margin-top: 10px;
+  color: white;
+  background-color: black;
+  border: white solid 1px;
+  padding: 10px;
+  font-weight: 500;
+}
 .slides {
   width: auto;
   margin: 30px 50px 50px;
+}
+.size_detail{
+  width: 50px;
+  margin: 5px 10px;
+  border: gray solid 1px;
+}
+
+.size_detail:hover{
+  width: 50px;
+  margin: 5px 10px;
+  border: black solid 1px;
 }
 .slick-slide {
   color: white;
