@@ -1058,7 +1058,11 @@ background-color: white;
   opacity: 1;
   
 }
-
+.errorSize{
+  color: red;
+  font-size: 15px;
+  display: inline;
+}
 
 
 .overlay_addtocart_div_button{

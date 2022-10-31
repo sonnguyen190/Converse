@@ -4,7 +4,7 @@ import Slider from "react-slick";
 export default function AsNavFor({ listimg, detail }) {
   const [nav1, setNav1] = useState();
   const [nav2, setNav2] = useState();
-  console.log(listimg[0]);
+
   if (listimg[0] != undefined) {
     return (
       <div>

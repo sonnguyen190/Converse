@@ -14,10 +14,28 @@ class Detail extends Component {
       listimg: [],
       listcolor: [],
       listsize: [],
+      isActiveColor: false,
+      isActiveSize: 1,
     };
   }
   handleaddToCartProcess = () => {
     this.props.handleaddToCart(this.state.detail);
+  };
+
+  changeColorProcess = (color) => {
+    console.log(color);
+    this.props.handleChangeColor(color);
+  };
+
+  changeSizeProcess = (size) => {
+    if (size) {
+      this.setState((pre) => {
+        pre.isActiveSize = 3;
+        return pre;
+      });
+    }
+    console.log(size);
+    this.props.handleChangeSize(size);
   };
   componentDidMount = () => {
     let { id } = this.props.params;
@@ -31,7 +49,6 @@ class Detail extends Component {
           prev.listsize = response.data.size;
           return prev;
         });
-        console.log(response.data);
       });
   };
 
@@ -52,19 +69,38 @@ class Detail extends Component {
             <div>{this.state.detail.title}</div>
             <div>
               <b> Color:</b>
-              {this.state.listcolor.map((home) => (
+              {this.props.validColor === true ? (
+                <div className="errorSize">choose Color !!!</div>
+              ) : (
+                <> </>
+              )}
+              {this.state.listcolor.map((home, key) => (
                 <button
+                  key={home.id}
+                  onClick={() => this.changeColorProcess(home.color)}
                   style={{ backgroundColor: home.color }}
                   className="color_detail"
                 ></button>
               ))}
             </div>
             <div>
-              <b> Size:</b>
+              <b> Size: </b>
+              {this.props.validSize === true ? (
+                <div className="errorSize">choose size !!!</div>
+              ) : (
+                <> </>
+              )}
+
               <div>
-                {this.state.listsize.map((home) => (
+                {this.state.listsize.map((home, key) => (
                   <>
-                    <button className="size_detail">{home.size}</button>
+                    <button
+                      key={home.id}
+                      className="size_detail"
+                      onClick={() => this.changeSizeProcess(home.size)}
+                    >
+                      {home.size}
+                    </button>
                   </>
                 ))}
               </div>

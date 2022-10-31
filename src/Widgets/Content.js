@@ -19,6 +19,10 @@ class Content extends Component {
       mang_gio_hang: [],
       so_luong_gio_hang: 0,
       tong_tien: 0,
+      color: "",
+      size: "",
+      validSize: false,
+      validColor: false,
     };
   }
 
@@ -40,31 +44,46 @@ class Content extends Component {
 
   addToCart = (item) => {
     let mang = this.state.mang_gio_hang;
-    if (mang) {
-      let flag = 0;
-      for (var i = 0; i < mang.length; i++) {
-        if (mang[i].id == item.id) {
-          mang[i].quantity += 1;
-          flag = 1;
+    console.log(mang);
+    item.colorr = this.state.color;
+    item.sizee = this.state.size;
+    if (this.state.size == "") {
+      this.setState((prevState) => {
+        prevState.validSize = true;
+        return prevState;
+      });
+    } else if (this.state.color == "") {
+      this.setState((prevState) => {
+        prevState.validColor = true;
+        return prevState;
+      });
+    } else {
+      if (mang) {
+        let flag = 0;
+        for (var i = 0; i < mang.length; i++) {
+          if (mang[i].id == item.id) {
+            mang[i].quantity += 1;
+            flag = 1;
+          }
         }
-      }
-      if (flag == 0) {
+        if (flag == 0) {
+          item.quantity = 1;
+          mang.push(item);
+        }
+      } else {
         item.quantity = 1;
         mang.push(item);
       }
-    } else {
-      item.quantity = 1;
-      mang.push(item);
+
+      this.setState((prevState) => {
+        prevState.mang_gio_hang = mang;
+        return prevState;
+      });
+
+      this.saveLocalstorate(mang);
+      this.handleAllItemCart(mang);
+      this.handleTinhTongTien(mang);
     }
-
-    this.setState((prevState) => {
-      prevState.mang_gio_hang = mang;
-      return prevState;
-    });
-
-    this.saveLocalstorate(mang);
-    this.handleAllItemCart(mang);
-    this.handleTinhTongTien(mang);
   };
 
   handleAllItemCart = (mang) => {
@@ -172,6 +191,31 @@ class Content extends Component {
     localStorage.setItem("cart", data_save);
   };
 
+  handleChangeColor = (color) => {
+    if (color) {
+      this.setState((prevState) => {
+        prevState.color = color;
+        return prevState;
+      });
+    }
+  };
+  handleChangeColor = (color) => {
+    if (color) {
+      this.setState((prevState) => {
+        prevState.color = color;
+        return prevState;
+      });
+    }
+  };
+  handleChangeSize = (size) => {
+    if (size) {
+      this.setState((prevState) => {
+        prevState.size = size;
+        return prevState;
+      });
+    }
+  };
+
   render() {
     return (
       <div>
@@ -200,6 +244,10 @@ class Content extends Component {
             path="/Detail/:id"
             element={
               <Detail
+                validSize={this.state.validSize}
+                validColor={this.state.validColor}
+                handleChangeColor={this.handleChangeColor}
+                handleChangeSize={this.handleChangeSize}
                 handleaddToCart={this.addToCart}
                 mang_gio_hang={this.state.mang_gio_hang}
               />
