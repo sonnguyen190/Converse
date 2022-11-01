@@ -8,7 +8,7 @@ class Header extends Component {
     return (
       <div>
         <TopBanner />
-        <Navbar />
+        <Navbar count={this.props.count} />
       </div>
     );
   }

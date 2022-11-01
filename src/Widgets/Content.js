@@ -19,7 +19,7 @@ class Content extends Component {
       mang_gio_hang: [],
       so_luong_gio_hang: 0,
       tong_tien: 0,
-      color: "",
+      color: "Random",
       size: "",
       validSize: false,
       validColor: false,
@@ -44,7 +44,6 @@ class Content extends Component {
 
   addToCart = (item) => {
     let mang = this.state.mang_gio_hang;
-    console.log(mang);
     item.colorr = this.state.color;
     item.sizee = this.state.size;
     if (this.state.size == "") {
@@ -52,16 +51,25 @@ class Content extends Component {
         prevState.validSize = true;
         return prevState;
       });
-    } else if (this.state.color == "") {
+    } else {
       this.setState((prevState) => {
-        prevState.validColor = true;
+        prevState.validSize = false;
+        prevState.validColor = false;
         return prevState;
       });
-    } else {
       if (mang) {
         let flag = 0;
+
         for (var i = 0; i < mang.length; i++) {
-          if (mang[i].id == item.id) {
+          console.log(mang[i].colorr);
+          if (item.colorr === "") {
+            item.colorr = "random";
+          }
+          if (
+            mang[i].id === item.id &&
+            mang[i].colorr === item.colorr &&
+            mang[i].sizee === item.sizee
+          ) {
             mang[i].quantity += 1;
             flag = 1;
           }
@@ -77,6 +85,8 @@ class Content extends Component {
 
       this.setState((prevState) => {
         prevState.mang_gio_hang = mang;
+        prevState.color = "";
+        prevState.size = "";
         return prevState;
       });
 
@@ -131,7 +141,11 @@ class Content extends Component {
   RemoveItemCart = (item) => {
     let mang = this.state.mang_gio_hang;
     for (var i = 0; i < mang.length; i++) {
-      if (mang[i].id == item.id) {
+      if (
+        mang[i].id == item.id &&
+        mang[i].sizee == item.sizee &&
+        mang[i].colorr == item.colorr
+      ) {
         mang.splice(i, 1);
       }
     }
@@ -205,6 +219,11 @@ class Content extends Component {
         prevState.color = color;
         return prevState;
       });
+    } else {
+      this.setState((prevState) => {
+        prevState.color = "random";
+        return prevState;
+      });
     }
   };
   handleChangeSize = (size) => {
@@ -244,6 +263,8 @@ class Content extends Component {
             path="/Detail/:id"
             element={
               <Detail
+                size={this.state.size}
+                color={this.state.color}
                 validSize={this.state.validSize}
                 validColor={this.state.validColor}
                 handleChangeColor={this.handleChangeColor}
@@ -262,7 +283,7 @@ class Content extends Component {
                 RemoveItemCart={this.RemoveItemCart}
                 remove_all_cart={this.removeCart}
                 handlegiamSoLuong={this.handlegiamSoLuong}
-                handletangSL={this.addToCart}
+                addToCart={this.addToCart}
                 tong_tien={this.state.tong_tien}
                 so_luong_gio_hang={this.state.so_luong_gio_hang}
               />

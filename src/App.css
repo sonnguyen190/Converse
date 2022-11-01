@@ -1061,9 +1061,11 @@ background-color: white;
 .errorSize{
   color: red;
   font-size: 15px;
-  display: inline;
+  display: block;
 }
-
+.b_detail_color{
+  display: block;
+}
 
 .overlay_addtocart_div_button{
   position: relative;

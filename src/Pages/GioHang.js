@@ -10,7 +10,7 @@ class GioHang extends Component {
     return (
       <div className="grid wide">
         <div className="grid_gio_hang wide_gio_hang">
-          <h2>Giỏ Hàng</h2>
+          <h2>Cart</h2>
           {this.props.so_luong_gio_hang == 0 ? (
             <div>
               <img
@@ -24,7 +24,7 @@ class GioHang extends Component {
           ) : (
             <div className="all_gio_hang_gia">
               <div className="all_and_clear_all">
-                <div>Tổng sản phẩm: {this.props.so_luong_gio_hang}</div>
+                <div>Total Quantity: {this.props.so_luong_gio_hang}</div>
                 <div
                   style={{ color: "red" }}
                   className="clear_all_cart"
@@ -34,14 +34,14 @@ class GioHang extends Component {
                 </div>
               </div>
 
-              {this.props.mang_gio_hang.map((sp) => {
+              {this.props.mang_gio_hang.map((sp, key) => {
                 return (
                   <FormCart
-                    key={sp.id}
+                    key={key}
                     list_gio_hang={sp}
                     RemoveItemCart={this.props.RemoveItemCart}
                     handlegiamSoLuong={this.props.handlegiamSoLuong}
-                    handletangSL={this.props.handletangSL}
+                    addToCart={this.props.addToCart}
                     RemoveAllItemCart={this.props.RemoveAllItemCart}
                   />
                 );

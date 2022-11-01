@@ -1,11 +1,14 @@
 import React, { Component } from "react";
-
+import { Link } from "react-router-dom";
 class FormCart extends Component {
   constructor(props) {
     super(props);
     this.state = {
       tong_tien: this.props.list_gio_hang.price,
     };
+  }
+  componentDidMount() {
+    console.log(this.props.list_gio_hang);
   }
   handleRemoveItemCart = () => {
     this.props.RemoveItemCart(this.props.list_gio_hang);
@@ -14,7 +17,7 @@ class FormCart extends Component {
     this.props.handlegiamSoLuong(this.props.list_gio_hang);
   };
   handleTangSl = () => {
-    this.props.handletangSL(this.props.list_gio_hang);
+    this.props.addToCart(this.props.list_gio_hang);
   };
 
   render() {
@@ -22,15 +25,20 @@ class FormCart extends Component {
       <div className="all_cart">
         <div className="item_gio_hang">
           <div className="img_gio_hang">
-            <img src={this.props.list_gio_hang.hinh_giay} alt="" />
+            <img src={this.props.list_gio_hang.image} alt="" />
           </div>
           <div className="title_gio_hang">
-            <a href="">{this.props.list_gio_hang.ten_giay}</a>
-            <p>Giá Tiền: {this.state.tong_tien} VND</p>
+            <Link to={`/Detail/${this.props.list_gio_hang.code}`}>
+              {this.props.list_gio_hang.name}
+            </Link>
+            <p>Price: ${this.props.list_gio_hang.price} </p>
+            <b style={{ marginRight: " 10px" }}>
+              Color: {this.props.list_gio_hang.colorr}{" "}
+            </b>
+            <b>Size: {this.props.list_gio_hang.sizee} </b>
             <div className="quantity_cart">
-              Số Lượng: <button onClick={this.handleGiamSl}>-</button>
+              Quantity:
               {this.props.list_gio_hang.quantity}
-              <button onClick={this.handleTangSl}>+</button>
             </div>
           </div>
         </div>

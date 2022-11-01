@@ -14,27 +14,29 @@ class Detail extends Component {
       listimg: [],
       listcolor: [],
       listsize: [],
-      isActiveColor: false,
-      isActiveSize: 1,
+      addProduct: false,
     };
   }
   handleaddToCartProcess = () => {
+    this.setState((prevState) => {
+      prevState.addProduct = true;
+      return prevState;
+    });
+
     this.props.handleaddToCart(this.state.detail);
   };
 
-  changeColorProcess = (color) => {
-    console.log(color);
-    this.props.handleChangeColor(color);
+  changeColorProcess = (color, id) => {
+    var colorDefault = "random";
+    console.log(typeof id);
+    if (id == "" || id == undefined || id == null) {
+      this.props.handleChangeColor(colorDefault);
+    } else {
+      this.props.handleChangeColor(color);
+    }
   };
 
   changeSizeProcess = (size) => {
-    if (size) {
-      this.setState((pre) => {
-        pre.isActiveSize = 3;
-        return pre;
-      });
-    }
-    console.log(size);
     this.props.handleChangeSize(size);
   };
   componentDidMount = () => {
@@ -68,7 +70,7 @@ class Detail extends Component {
             <h4>{this.state.detail.name}</h4>
             <div>{this.state.detail.title}</div>
             <div>
-              <b> Color:</b>
+              <b className="b_detail_color"> Color: {this.props.color}</b>
               {this.props.validColor === true ? (
                 <div className="errorSize">choose Color !!!</div>
               ) : (
@@ -76,16 +78,17 @@ class Detail extends Component {
               )}
               {this.state.listcolor.map((home, key) => (
                 <button
+                  id={home.id}
                   key={home.id}
-                  onClick={() => this.changeColorProcess(home.color)}
+                  onClick={() => this.changeColorProcess(home.color, home.id)}
                   style={{ backgroundColor: home.color }}
                   className="color_detail"
                 ></button>
               ))}
             </div>
             <div>
-              <b> Size: </b>
-              {this.props.validSize === true ? (
+              <b> Size: {this.props.size}</b>
+              {this.props.validSize == true ? (
                 <div className="errorSize">choose size !!!</div>
               ) : (
                 <> </>
