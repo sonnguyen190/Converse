@@ -33,6 +33,11 @@ class SignIn extends Component {
               onChange={this.props.handleChange}
             />
           </div>
+          {this.props.isError == true ? (
+            <b className="error_Signup">"Đồ ngu, đồ ăn hại"</b>
+          ) : (
+            <></>
+          )}
         </div>
 
         <div className="form-group">

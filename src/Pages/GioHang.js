@@ -2,10 +2,44 @@ import React, { Component } from "react";
 import FormCart from "../Module/FormCart";
 import { Link } from "react-router-dom";
 class GioHang extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      mang_localstorage: [],
+      tong: 0,
+    };
+  }
+  componentDidMount() {
+    let data_string_manggiohang = localStorage.getItem("cart");
+
+    if (
+      data_string_manggiohang &&
+      data_string_manggiohang !== "undefined" &&
+      data_string_manggiohang !== "null"
+    ) {
+      let mang = JSON.parse(data_string_manggiohang);
+
+      this.setState((pre) => {
+        pre.mang_localstorage = mang;
+        return pre;
+      });
+      this.handleTinhTongTien2(mang);
+    }
+  }
+  handleTinhTongTien2 = (mang) => {
+    let tong = 0;
+    for (var i = 0; i < mang.length; i++) {
+      tong += mang[i].price * mang[i].quantity;
+    }
+    this.setState((pre) => {
+      pre.tong = tong;
+      return pre;
+    });
+  };
+
   handleRemoveAllCart = () => {
     this.props.remove_all_cart();
   };
-
   render() {
     return (
       <div className="grid wide">
@@ -24,13 +58,12 @@ class GioHang extends Component {
           ) : (
             <div className="all_gio_hang_gia">
               <div className="all_and_clear_all">
-                <div>Total Quantity: {this.props.so_luong_gio_hang}</div>
+                <div>{this.props.so_luong_gio_hang} Items in Cart</div>
                 <div
-                  style={{ color: "red" }}
                   className="clear_all_cart"
                   onClick={this.handleRemoveAllCart}
                 >
-                  Clear All
+                  X
                 </div>
               </div>
 
@@ -46,7 +79,11 @@ class GioHang extends Component {
                   />
                 );
               })}
-              <div>tổng tiền là:{this.props.tong_tien} VND</div>
+              <hr />
+              <div className="price_cart">
+                <div className="price_cart_div">${this.props.tong_tien}.00</div>
+                <button className="button_buy_cart">Buy</button>
+              </div>
             </div>
           )}
         </div>

@@ -38,9 +38,11 @@ class Navbar extends Component {
   // };
   componentDidMount = () => {
     window.addEventListener("scroll", this.isMouseDown);
-    const user = JSON.parse(localStorage.getItem("user"));
-    const authen = localStorage.getItem("user") !== null;
-    this.styleauthen(authen, user);
+    if (localStorage.getItem("user") !== undefined) {
+      const user = JSON.parse(localStorage.getItem("user"));
+      const authen = localStorage.getItem("user") !== null;
+      this.styleauthen(authen, user);
+    }
   };
 
   hanndleOnlickShowLogout = () => {

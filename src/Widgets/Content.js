@@ -28,17 +28,20 @@ class Content extends Component {
 
   componentDidMount() {
     let data_string_manggiohang = localStorage.getItem("cart");
+
     if (
       data_string_manggiohang &&
       data_string_manggiohang !== "undefined" &&
       data_string_manggiohang !== "null"
     ) {
       let mang = JSON.parse(data_string_manggiohang);
+
       this.setState((pre) => {
         pre.mang_gio_hang = mang;
         return pre;
       });
       this.handleAllItemCart(mang);
+      this.handleTinhTongTien(mang);
     }
   }
 
@@ -46,6 +49,7 @@ class Content extends Component {
     let mang = this.state.mang_gio_hang;
     item.colorr = this.state.color;
     item.sizee = this.state.size;
+
     if (this.state.size == "") {
       this.setState((prevState) => {
         prevState.validSize = true;
@@ -90,9 +94,9 @@ class Content extends Component {
         return prevState;
       });
 
-      this.saveLocalstorate(mang);
       this.handleAllItemCart(mang);
       this.handleTinhTongTien(mang);
+      this.saveLocalstorate(mang);
     }
   };
 
@@ -121,7 +125,11 @@ class Content extends Component {
   handlegiamSoLuong = (item) => {
     let mang = this.state.mang_gio_hang;
     for (var i = 0; i < mang.length; i++) {
-      if (mang[i].id == item.id) {
+      if (
+        mang[i].id == item.id &&
+        mang[i].colorr === item.colorr &&
+        mang[i].sizee === item.sizee
+      ) {
         if (mang[i].quantity > 1) {
           mang[i].quantity -= 1;
         } else {
@@ -279,6 +287,7 @@ class Content extends Component {
             path="/Cart"
             element={
               <GioHang
+                saveLocalstorate={this.saveLocalstorate}
                 mang_gio_hang={this.state.mang_gio_hang}
                 RemoveItemCart={this.RemoveItemCart}
                 remove_all_cart={this.removeCart}

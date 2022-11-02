@@ -87,6 +87,7 @@ class SignUp extends Component {
               onChange={this.props.handleChange}
             />
           </div>
+          <b className="error_Signup">{this.props.errorMessage}</b>
         </div>
 
         <div className="form-group">

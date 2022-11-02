@@ -14,9 +14,21 @@ class Register extends Component {
       repassword: "",
       ho_ten: "",
       is_active: "signin",
+      isError: false,
+      errorMessage: "",
     };
     this.handleSubmitForm = this.handleSubmitForm.bind(this);
   }
+
+  handleLogError = (error) => {
+    if (error.response) {
+      console.log(error.response.data);
+    } else if (error.request) {
+      console.log(error.request);
+    } else {
+      console.log(error.message);
+    }
+  };
   handleSubmitForm = (event) => {
     event.preventDefault();
     if (this.state.password != this.state.repassword) {
@@ -53,12 +65,25 @@ class Register extends Component {
           const { id, name, role, username, email } = response.data;
           const user = { id, name, role, username, email };
 
-          localStorage.setItem("user", JSON.stringify());
+          localStorage.setItem("user", JSON.stringify(user));
           window.location.reload(false);
         })
         .catch((error) => {
-          alert("đã xảy ra lỗi");
-          console.log(error);
+          this.handleLogError(error);
+          if (error.response && error.response.data) {
+            const errorData = error.response.data;
+            let errorMessage = error.response.data.message;
+            console.log(errorData);
+            if (errorData.status === 409) {
+              errorMessage = errorData.message;
+            } else if (errorData.status === 400) {
+              errorMessage = errorData.errors[0].defaultMessage;
+            }
+            this.setState({
+              isError: true,
+              errorMessage,
+            });
+          }
         });
     }
   };
@@ -68,8 +93,6 @@ class Register extends Component {
     if (!(this.state.username && this.state.password)) {
       alert("Error");
     } else {
-      console.log(this.state.username);
-      console.log(this.state.password);
       axios
         .post(
           "http://localhost:8080/auth/authenticate",
@@ -95,8 +118,10 @@ class Register extends Component {
           window.location.reload(false);
         })
         .catch((error) => {
-          alert("Valid Pass Or Username");
-          console.log(error);
+          this.setState({
+            isError: true,
+            password: "",
+          });
         });
     }
   };
@@ -177,6 +202,7 @@ class Register extends Component {
           {this.state.is_active == "signin" ? (
             <div>
               <SignIn
+                isError={this.state.isError}
                 password={this.state.password}
                 username={this.state.username}
                 handleChange={this.handleChange}
@@ -187,6 +213,7 @@ class Register extends Component {
           ) : (
             <div>
               <SignUp
+                errorMessage={this.state.errorMessage}
                 username={this.state.username}
                 valid_password={this.state.valid_password}
                 handleSubmitForm={this.handleSubmitForm}

@@ -14,7 +14,7 @@ class FormCart extends Component {
     this.props.RemoveItemCart(this.props.list_gio_hang);
   };
   handleGiamSl = () => {
-    this.props.handlegiamSoLuong(this.props.list_gio_hang);
+    this.props.handlegiamSoLuong1(this.props.list_gio_hang);
   };
   handleTangSl = () => {
     this.props.addToCart(this.props.list_gio_hang);
@@ -31,7 +31,7 @@ class FormCart extends Component {
             <Link to={`/Detail/${this.props.list_gio_hang.code}`}>
               {this.props.list_gio_hang.name}
             </Link>
-            <p>Price: ${this.props.list_gio_hang.price} </p>
+            <p>Price: ${this.props.list_gio_hang.price}.00 </p>
             <b style={{ marginRight: " 10px" }}>
               Color: {this.props.list_gio_hang.colorr}{" "}
             </b>
@@ -43,7 +43,7 @@ class FormCart extends Component {
           </div>
         </div>
         <div className="option_cart">
-          <p onClick={this.handleRemoveItemCart}>remove</p>
+          <p onClick={this.handleRemoveItemCart}>X</p>
         </div>
       </div>
     );

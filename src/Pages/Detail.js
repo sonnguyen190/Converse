@@ -65,7 +65,7 @@ class Detail extends Component {
           />
 
           <div className="title_detail">
-            <h3>${this.state.detail.price}</h3>
+            <h3>${this.state.detail.price}.00</h3>
             <h6>Code: {this.state.detail.code}</h6>
             <h4>{this.state.detail.name}</h4>
             <div>{this.state.detail.title}</div>

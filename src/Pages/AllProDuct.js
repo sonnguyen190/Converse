@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ListSanPham from "../Module/ListSanPham";
 import MainLeft from "../Module/MainLeft";
+import Skeleton from "@mui/material/Skeleton";
 
 const axios = require("axios").default;
 class AllProduct extends Component {
@@ -8,17 +9,24 @@ class AllProduct extends Component {
     super(props);
     this.state = {
       list_san_pham: [],
+      isShoesLoading: false,
     };
   }
 
   componentDidMount = () => {
-    axios.get("http://localhost:8080/api/shoes").then((response) => {
-      console.log(response);
-      this.setState((prev) => {
-        prev.list_san_pham = response.data;
-        return prev;
+    this.setState({ isShoesLoading: true });
+    axios
+      .get("http://localhost:8080/api/shoes")
+      .then((response) => {
+        console.log(response);
+        this.setState((prev) => {
+          prev.list_san_pham = response.data;
+          return prev;
+        });
+      })
+      .finally(() => {
+        this.setState({ isShoesLoading: false });
       });
-    });
   };
   render() {
     return (
@@ -29,11 +37,17 @@ class AllProduct extends Component {
           <div className="main_right">
             {this.state.list_san_pham.map((sp) => {
               return (
-                <ListSanPham
-                  key={sp.id}
-                  listsp={sp}
-                  handleaddToCart={this.props.handleaddToCart}
-                />
+                <>
+                  {this.state.isShoesLoading === true ? (
+                    <Skeleton variant="rectangular" width={210} height={118} />
+                  ) : (
+                    <ListSanPham
+                      key={sp.id}
+                      listsp={sp}
+                      handleaddToCart={this.props.handleaddToCart}
+                    />
+                  )}
+                </>
               );
             })}
           </div>
