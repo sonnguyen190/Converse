@@ -914,10 +914,164 @@ background-color: white;
 }
 .color_detail{
   margin: 5px 5px;
-  height: 20px;
+  height: 35px;
   border: 1px solid black;
   border-radius: 200px;
-  width: 20px;
+  width: 35px;
+}
+.all_checkout{
+  display: grid;
+  grid-template-columns: 60% 40%;
+}
+.ShippingAddress{
+  border:.06850000000000001rem solid #e8e8e8;
+ height: 1000px;
+  margin-top: 100px;
+  margin-right: 10px;
+  padding: 35px;
+}
+
+.radio_button_freeship{
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+}
+.shipping_method{
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: 95% 5%;
+  margin-bottom: 30px;
+  
+}
+.payment_card1{
+  margin-top: 20px;
+}
+.payment_card{
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+.validPhone{
+  color: red;
+  padding: 0px;
+  font-size: 10px;
+}
+
+
+.Cart{
+  border:.06850000000000001rem solid #e8e8e8;
+  
+  margin-top: 100px;
+  margin-left: 10px;
+  padding: 35px;
+}
+.left_cart_checkout{
+  padding: 0px 0px;
+  align-items: center;
+  margin: 0 auto;
+}
+.img_checkout{
+  width: 120px;
+  height: 122px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: relative;
+  z-index: -1;
+  bottom: 20px;
+}
+.cart_content{
+  display: grid;
+  grid-template-columns: 30% 70%;
+ 
+}
+.quantity_in_cart_checkout{
+  font-size: 20px;
+  margin-right: 0px;
+}
+.label_checkout{
+  width: 100%;
+}
+
+.div_checkout{
+  margin: 40px 0px;
+}
+.form_sign_up_all{
+  padding-right: 15px;
+  padding-left: 5px;
+}
+.label_passwordsignup{
+  margin-left: -10px;
+  margin-bottom: -150px;
+}
+.group_signup_control{
+  margin: 0px;
+  padding: 0px;
+}
+.name_cart_checkout{
+  margin-top: 5px;
+  display: inline;
+  margin-right: 50px;
+ 
+}
+
+.color_cart_checkout{
+  margin-top: 10px;
+}
+.Amount_cart{
+  float: right;
+}
+.quantity_checkout_cart{
+  position: relative;
+  top: 3px;
+  background-color: #dfdedd;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  left: 100px;
+
+}
+.khongtacdung{
+  border:.06850000000000001rem solid #e8e8e8;
+  margin-top: 10px;
+  margin-left: 10px;
+  padding: 25px;
+}
+.number_quantity_cart_checkout{
+  margin: 0px auto;
+}
+.h2_title_shipping{
+  
+  
+  font-size: 30px;
+  font-weight: 600;
+}
+.color_detailactive_item{
+  transition: ease-in 0.1s;
+  margin: 5px 5px;
+  height: 35px;
+  border: 1px solid black;
+  border-radius: 200px;
+  width: 35px;
+}
+.color_detailactive_item:before{
+    content: '\2713';
+    color:blue ;
+    font-weight: 800;
+    font-size: 20px;
+    padding: 0px;
+    margin-top: -20px;
+    padding-top: -20px;
+}
+.alert_addtoCart{
+  position:fixed;
+  bottom: 20px;
+  left: 10px;
+  width: 350px;
+  transition: ease 0.5s;
+
 }
 .popup_logout{
   position: absolute;
@@ -954,6 +1108,11 @@ background-color: white;
   width: 50px;
   margin: 5px 10px;
   border: gray solid 1px;
+}
+.size_detailactive_item{
+  border:black solid 3px;
+  width: 50px;
+  margin: 5px 10px;
 }
 
 .size_detail:hover{
@@ -1032,6 +1191,7 @@ background-color: white;
 .list_san_pham{
   padding: 0 3px;
 }
+
 .image_item{
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -1199,6 +1359,8 @@ background-color: white;
   grid-template-columns: 80% 20%;
 }
 .button_buy_cart{
+  padding-top: 10px;
+  text-align: center;
   background-color: #000;
   color: white;
   height: 50px;
@@ -1207,7 +1369,7 @@ background-color: white;
   left: 35px;
   font-weight: 500;
   transition: ease 0.3s;
-  border-radius: 2px;
+  border-radius: 3px;
 }
 .error_Signup{
   color: red;
@@ -1217,6 +1379,8 @@ background-color: white;
   font-size: 30px;
 }
 .button_buy_cart:hover{
+  text-decoration: none;
+  border: #000 solid 2px;
   background-color: white;
   color: black;
   height: 50px;
@@ -1258,21 +1422,30 @@ background-color: white;
   text-align: center;
   position: relative;
   z-index: 100;
-  
+  top: -600px;
   background-color: white;
   border-radius: 2px;
   margin: 0 auto;
-  top: -300px;
+ 
   width: 300px;
   border-radius: 5px;
   border: 3px solid black;
   padding: 10px;
-
-  
+}
+.div_color_scale{
+  height: 80px;
 }
 .popup_are_you_sure{
   margin: auto;
   
+}
+.button_chage_quantity{
+  border: none;
+  background-color: white;
+  color: #000;
+  display: inline;
+  margin: 2px 15px;
+  cursor: pointer;
 }
 .button_are_you_sure_delete_it{
   border-radius: 5px;

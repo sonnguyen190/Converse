@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { useParams } from "react-router-dom";
+import Alert from "@mui/material/Alert";
 import AsNavFor from "../Module/AsNavFor";
 const axios = require("axios").default;
 function withParams(Component) {
@@ -15,28 +16,44 @@ class Detail extends Component {
       listcolor: [],
       listsize: [],
       addProduct: false,
+      activeLink: null,
+      active_color: null,
+      isUser: null,
     };
   }
   handleaddToCartProcess = () => {
     this.setState((prevState) => {
-      prevState.addProduct = true;
+      prevState.activeLink = null;
+      prevState.active_color = null;
       return prevState;
     });
+    if (
+      this.state.activeLink !== null &&
+      this.state.active_color !== null &&
+      this.state.isUser !== null
+    ) {
+      this.setState((prevState) => {
+        prevState.addProduct = true;
+        return prevState;
+      });
+    }
+    setTimeout(() => {
+      this.setState({
+        addProduct: false,
+      });
+    }, 2000);
 
     this.props.handleaddToCart(this.state.detail);
   };
 
   changeColorProcess = (color, id) => {
-    var colorDefault = "random";
-    console.log(typeof id);
-    if (id == "" || id == undefined || id == null) {
-      this.props.handleChangeColor(colorDefault);
-    } else {
-      this.props.handleChangeColor(color);
-    }
+    this.setState({ active_color: id });
+
+    this.props.handleChangeColor(color);
   };
 
-  changeSizeProcess = (size) => {
+  changeSizeProcess = (size, id) => {
+    this.setState({ activeLink: id });
     this.props.handleChangeSize(size);
   };
   componentDidMount = () => {
@@ -52,6 +69,10 @@ class Detail extends Component {
           return prev;
         });
       });
+    let user = localStorage.getItem("user");
+    this.setState({
+      isUser: user,
+    });
   };
 
   render() {
@@ -65,12 +86,20 @@ class Detail extends Component {
           />
 
           <div className="title_detail">
+            {this.state.addProduct === true ? (
+              <Alert className="alert_addtoCart" severity="success">
+                Add Complete !!!
+              </Alert>
+            ) : (
+              <></>
+            )}
+
             <h3>${this.state.detail.price}.00</h3>
             <h6>Code: {this.state.detail.code}</h6>
             <h4>{this.state.detail.name}</h4>
             <div>{this.state.detail.title}</div>
-            <div>
-              <b className="b_detail_color"> Color: {this.props.color}</b>
+            <div className="div_color_scale">
+              <b className="b_detail_color"> Color: </b>
               {this.props.validColor === true ? (
                 <div className="errorSize">choose Color !!!</div>
               ) : (
@@ -78,16 +107,18 @@ class Detail extends Component {
               )}
               {this.state.listcolor.map((home, key) => (
                 <button
-                  id={home.id}
-                  key={home.id}
+                  key={key}
                   onClick={() => this.changeColorProcess(home.color, home.id)}
                   style={{ backgroundColor: home.color }}
-                  className="color_detail"
+                  className={
+                    `color_detail` +
+                    (home.id === this.state.active_color ? "active_item" : "")
+                  }
                 ></button>
               ))}
             </div>
             <div>
-              <b> Size: {this.props.size}</b>
+              <b> Size: </b>
               {this.props.validSize == true ? (
                 <div className="errorSize">choose size !!!</div>
               ) : (
@@ -99,8 +130,11 @@ class Detail extends Component {
                   <>
                     <button
                       key={home.id}
-                      className="size_detail"
-                      onClick={() => this.changeSizeProcess(home.size)}
+                      className={
+                        `size_detail` +
+                        (home.id === this.state.activeLink ? "active_item" : "")
+                      }
+                      onClick={() => this.changeSizeProcess(home.size, home.id)}
                     >
                       {home.size}
                     </button>

@@ -1,10 +1,29 @@
 import React, { Component } from "react";
 import TextField from "@mui/material/TextField";
+import IconButton from "@mui/material/IconButton";
+import Input from "@mui/material/Input";
+import InputLabel from "@mui/material/InputLabel";
+import InputAdornment from "@mui/material/InputAdornment";
+import FormControl from "@mui/material/FormControl";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 class SignUp extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { showPassword: false };
+  }
+  handleClickShowPassword = () => {
+    this.setState({
+      showPassword: !this.state.showPassword,
+    });
+  };
+  handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
   render() {
     return (
-      <form>
+      <form className="form_sign_up_all">
         <div className="form-group">
           <div className="form-group_signup">
             <TextField
@@ -21,43 +40,84 @@ class SignUp extends Component {
         </div>
 
         <div className="form-group">
-          <div className="form-group_signup">
-            <TextField
+          <FormControl
+            className="form-group_signup_control"
+            sx={{ width: "100%" }}
+          >
+            <InputLabel className="label_passwordsignup">Password</InputLabel>
+            <Input
               className="label_signup"
-              type="password"
+              type={this.state.showPassword ? "text" : "password"}
               name="password"
               id="password"
               label="Password"
               variant="standard"
               value={this.props.password}
               onChange={this.props.handleChange}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={this.handleClickShowPassword}
+                    onMouseDown={this.handleMouseDownPassword}
+                  >
+                    {this.state.showPassword ? (
+                      <VisibilityOff />
+                    ) : (
+                      <Visibility />
+                    )}
+                  </IconButton>
+                </InputAdornment>
+              }
             />
-            {this.props.valid_password == false ? (
-              <p id="valid_password">Password is requied</p>
-            ) : (
-              <></>
-            )}
-          </div>
+          </FormControl>
+
+          {this.props.valid_password == false ? (
+            <p id="valid_password">Password is requied</p>
+          ) : (
+            <></>
+          )}
         </div>
 
         <div className="form-group">
-          <div className="form-group_signup">
-            <TextField
+          <FormControl
+            className="form-group_signup_control"
+            sx={{ width: "100%" }}
+          >
+            <InputLabel className="label_passwordsignup">
+              Re-Password
+            </InputLabel>
+            <Input
               className="label_signup"
-              type="password"
+              type={this.state.showPassword ? "text" : "password"}
               name="repassword"
               id="repassword"
-              label="Confirm Password"
+              label="repassword"
               variant="standard"
               value={this.props.repassword}
               onChange={this.props.handleChange}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={this.handleClickShowPassword}
+                    onMouseDown={this.handleMouseDownPassword}
+                  >
+                    {this.state.showPassword ? (
+                      <VisibilityOff />
+                    ) : (
+                      <Visibility />
+                    )}
+                  </IconButton>
+                </InputAdornment>
+              }
             />
-            {this.props.valid_password == false ? (
-              <p id="valid_password">Password is requied</p>
-            ) : (
-              <></>
-            )}
-          </div>
+          </FormControl>
+          {this.props.valid_password == false ? (
+            <p id="valid_password">Password is requied</p>
+          ) : (
+            <></>
+          )}
         </div>
 
         <div className="form-group">

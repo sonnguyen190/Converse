@@ -14,10 +14,10 @@ class FormCart extends Component {
     this.props.RemoveItemCart(this.props.list_gio_hang);
   };
   handleGiamSl = () => {
-    this.props.handlegiamSoLuong1(this.props.list_gio_hang);
+    this.props.handlegiamSoLuong(this.props.list_gio_hang);
   };
   handleTangSl = () => {
-    this.props.addToCart(this.props.list_gio_hang);
+    this.props.handleTangSoLuong(this.props.list_gio_hang);
   };
 
   render() {
@@ -38,7 +38,19 @@ class FormCart extends Component {
             <b>Size: {this.props.list_gio_hang.sizee} </b>
             <div className="quantity_cart">
               Quantity:
+              <button
+                className="button_chage_quantity"
+                onClick={this.handleGiamSl}
+              >
+                -
+              </button>
               {this.props.list_gio_hang.quantity}
+              <button
+                className="button_chage_quantity"
+                onClick={this.handleTangSl}
+              >
+                +
+              </button>
             </div>
           </div>
         </div>

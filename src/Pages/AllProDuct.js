@@ -9,7 +9,7 @@ class AllProduct extends Component {
     super(props);
     this.state = {
       list_san_pham: [],
-      isShoesLoading: false,
+      isShoesLoading: true,
     };
   }
 
@@ -39,7 +39,7 @@ class AllProduct extends Component {
               return (
                 <>
                   {this.state.isShoesLoading === true ? (
-                    <Skeleton variant="rectangular" width={210} height={118} />
+                    <Skeleton variant="rectangular" width={250} height={246} />
                   ) : (
                     <ListSanPham
                       key={sp.id}

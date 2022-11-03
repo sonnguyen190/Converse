@@ -11,6 +11,7 @@ import GioHang from "../Pages/GioHang";
 
 import TrangChu from "../Pages/TrangChu";
 import Detail from "../Pages/Detail";
+import Checkout from "../Pages/Checkout";
 
 class Content extends Component {
   constructor(props) {
@@ -23,12 +24,17 @@ class Content extends Component {
       size: "",
       validSize: false,
       validColor: false,
+      isUser: null,
     };
   }
 
   componentDidMount() {
     let data_string_manggiohang = localStorage.getItem("cart");
-
+    let user = localStorage.getItem("user");
+    this.setState((pre) => {
+      pre.isUser = user;
+      return pre;
+    });
     if (
       data_string_manggiohang &&
       data_string_manggiohang !== "undefined" &&
@@ -46,57 +52,61 @@ class Content extends Component {
   }
 
   addToCart = (item) => {
+    let isuser = this.state.isUser;
     let mang = this.state.mang_gio_hang;
     item.colorr = this.state.color;
     item.sizee = this.state.size;
-
-    if (this.state.size == "") {
-      this.setState((prevState) => {
-        prevState.validSize = true;
-        return prevState;
-      });
+    if (isuser == null) {
+      alert("login required");
     } else {
-      this.setState((prevState) => {
-        prevState.validSize = false;
-        prevState.validColor = false;
-        return prevState;
-      });
-      if (mang) {
-        let flag = 0;
+      if (this.state.size == "") {
+        this.setState((prevState) => {
+          prevState.validSize = true;
+          return prevState;
+        });
+      } else {
+        this.setState((prevState) => {
+          prevState.validSize = false;
+          prevState.validColor = false;
+          return prevState;
+        });
+        if (mang) {
+          let flag = 0;
 
-        for (var i = 0; i < mang.length; i++) {
-          console.log(mang[i].colorr);
-          if (item.colorr === "") {
-            item.colorr = "random";
+          for (var i = 0; i < mang.length; i++) {
+            console.log(mang[i].colorr);
+            if (item.colorr === "") {
+              item.colorr = "random";
+            }
+            if (
+              mang[i].id === item.id &&
+              mang[i].colorr === item.colorr &&
+              mang[i].sizee === item.sizee
+            ) {
+              mang[i].quantity += 1;
+              flag = 1;
+            }
           }
-          if (
-            mang[i].id === item.id &&
-            mang[i].colorr === item.colorr &&
-            mang[i].sizee === item.sizee
-          ) {
-            mang[i].quantity += 1;
-            flag = 1;
+          if (flag == 0) {
+            item.quantity = 1;
+            mang.push(item);
           }
-        }
-        if (flag == 0) {
+        } else {
           item.quantity = 1;
           mang.push(item);
         }
-      } else {
-        item.quantity = 1;
-        mang.push(item);
+
+        this.setState((prevState) => {
+          prevState.mang_gio_hang = mang;
+          prevState.color = "";
+          prevState.size = "";
+          return prevState;
+        });
+
+        this.handleAllItemCart(mang);
+        this.handleTinhTongTien(mang);
+        this.saveLocalstorate(mang);
       }
-
-      this.setState((prevState) => {
-        prevState.mang_gio_hang = mang;
-        prevState.color = "";
-        prevState.size = "";
-        return prevState;
-      });
-
-      this.handleAllItemCart(mang);
-      this.handleTinhTongTien(mang);
-      this.saveLocalstorate(mang);
     }
   };
 
@@ -132,6 +142,30 @@ class Content extends Component {
       ) {
         if (mang[i].quantity > 1) {
           mang[i].quantity -= 1;
+        } else {
+          this.RemoveItemCart(mang[i]);
+        }
+      }
+    }
+    this.setState((prevState) => {
+      prevState.mang_gio_hang = mang;
+      return prevState;
+    });
+    this.saveLocalstorate(mang);
+    this.handleAllItemCart(mang);
+    this.handleTinhTongTien(mang);
+  };
+
+  handleTangSoLuong = (item) => {
+    let mang = this.state.mang_gio_hang;
+    for (var i = 0; i < mang.length; i++) {
+      if (
+        mang[i].id == item.id &&
+        mang[i].colorr === item.colorr &&
+        mang[i].sizee === item.sizee
+      ) {
+        if (mang[i].quantity >= 1) {
+          mang[i].quantity += 1;
         } else {
           //do nothing
         }
@@ -292,7 +326,19 @@ class Content extends Component {
                 RemoveItemCart={this.RemoveItemCart}
                 remove_all_cart={this.removeCart}
                 handlegiamSoLuong={this.handlegiamSoLuong}
+                handleTangSoLuong={this.handleTangSoLuong}
                 addToCart={this.addToCart}
+                tong_tien={this.state.tong_tien}
+                so_luong_gio_hang={this.state.so_luong_gio_hang}
+              />
+            }
+          ></Route>
+
+          <Route
+            path="/Checkout"
+            element={
+              <Checkout
+                mang_gio_hang={this.state.mang_gio_hang}
                 tong_tien={this.state.tong_tien}
                 so_luong_gio_hang={this.state.so_luong_gio_hang}
               />
