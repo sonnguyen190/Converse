@@ -74,7 +74,6 @@ class Content extends Component {
           let flag = 0;
 
           for (var i = 0; i < mang.length; i++) {
-            console.log(mang[i].colorr);
             if (item.colorr === "") {
               item.colorr = "random";
             }
@@ -84,15 +83,18 @@ class Content extends Component {
               mang[i].sizee === item.sizee
             ) {
               mang[i].quantity += 1;
+              mang[i].amount = mang[i].price * mang[i].quantity;
               flag = 1;
             }
           }
           if (flag == 0) {
             item.quantity = 1;
+            item.amount = item.price * 1;
             mang.push(item);
           }
         } else {
           item.quantity = 1;
+          item.amount = item.price * 1;
           mang.push(item);
         }
 
@@ -142,6 +144,7 @@ class Content extends Component {
       ) {
         if (mang[i].quantity > 1) {
           mang[i].quantity -= 1;
+          mang[i].amount = mang[i].price * mang[i].quantity;
         } else {
           this.RemoveItemCart(mang[i]);
         }
@@ -166,6 +169,7 @@ class Content extends Component {
       ) {
         if (mang[i].quantity >= 1) {
           mang[i].quantity += 1;
+          mang[i].amount = mang[i].price * mang[i].quantity;
         } else {
           //do nothing
         }
@@ -243,8 +247,18 @@ class Content extends Component {
   };
 
   saveLocalstorate = (mang_gio_hang) => {
-    let data_save = JSON.stringify(mang_gio_hang);
-    localStorage.setItem("cart", data_save);
+    if (mang_gio_hang === "complete") {
+      this.setState((prevState) => {
+        prevState.mang_gio_hang = [];
+        prevState.so_luong_gio_hang = 0;
+        prevState.tong_tien = 0;
+        return prevState;
+      });
+      localStorage.setItem("cart", []);
+    } else {
+      let data_save = JSON.stringify(mang_gio_hang);
+      localStorage.setItem("cart", data_save);
+    }
   };
 
   handleChangeColor = (color) => {
@@ -338,6 +352,7 @@ class Content extends Component {
             path="/Checkout"
             element={
               <Checkout
+                saveLocalstorate={this.saveLocalstorate}
                 mang_gio_hang={this.state.mang_gio_hang}
                 tong_tien={this.state.tong_tien}
                 so_luong_gio_hang={this.state.so_luong_gio_hang}

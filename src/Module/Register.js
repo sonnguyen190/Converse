@@ -111,8 +111,8 @@ class Register extends Component {
           var basicAu =
             "Basic " +
             btoa(response.data.username + ":" + response.data.password);
-          const { id, name, role, email } = response.data;
-          const user = { id, name, role, basicAu, email };
+          const { id, name, role, email, username } = response.data;
+          const user = { id, name, role, basicAu, email, username };
           console.log(user);
           localStorage.setItem("user", JSON.stringify(user));
           window.location.reload(false);

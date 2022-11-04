@@ -93,10 +93,10 @@ class Detail extends Component {
             ) : (
               <></>
             )}
-
-            <h3>${this.state.detail.price}.00</h3>
-            <h6>Code: {this.state.detail.code}</h6>
             <h4>{this.state.detail.name}</h4>
+            <h6>Code: {this.state.detail.code}</h6>
+            <h3>${this.state.detail.price}.00</h3>
+
             <div>{this.state.detail.title}</div>
             <div className="div_color_scale">
               <b className="b_detail_color"> Color: </b>

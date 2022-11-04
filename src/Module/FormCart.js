@@ -31,31 +31,37 @@ class FormCart extends Component {
             <Link to={`/Detail/${this.props.list_gio_hang.code}`}>
               {this.props.list_gio_hang.name}
             </Link>
-            <p>Price: ${this.props.list_gio_hang.price}.00 </p>
-            <b style={{ marginRight: " 10px" }}>
-              Color: {this.props.list_gio_hang.colorr}{" "}
-            </b>
-            <b>Size: {this.props.list_gio_hang.sizee} </b>
-            <div className="quantity_cart">
-              Quantity:
-              <button
-                className="button_chage_quantity"
-                onClick={this.handleGiamSl}
-              >
-                -
-              </button>
-              {this.props.list_gio_hang.quantity}
-              <button
-                className="button_chage_quantity"
-                onClick={this.handleTangSl}
-              >
-                +
-              </button>
+
+            <p className="priunit">${this.props.list_gio_hang.price}.00 </p>
+            <div className="shoe_size_cart">
+              Shoe Size: {this.props.list_gio_hang.sizee}
             </div>
+
+            <div className="shoe_size_cart" style={{ marginRight: " 10px" }}>
+              Color: {this.props.list_gio_hang.colorr}{" "}
+            </div>
+          </div>
+          <div className="quantity_cart">
+            <button
+              className="button_chage_quantity"
+              onClick={this.handleGiamSl}
+            >
+              -
+            </button>
+            {this.props.list_gio_hang.quantity}
+            <button
+              className="button_chage_quantity"
+              onClick={this.handleTangSl}
+            >
+              +
+            </button>
+          </div>
+          <div>
+            <p className="priunit1">${this.props.list_gio_hang.amount}.00 </p>
           </div>
         </div>
         <div className="option_cart">
-          <p onClick={this.handleRemoveItemCart}>X</p>
+          <p onClick={this.handleRemoveItemCart}>DELETE</p>
         </div>
       </div>
     );

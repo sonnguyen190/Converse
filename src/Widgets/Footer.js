@@ -1,8 +1,12 @@
 import React, { Component } from "react";
-
+import FooterFake from "../Module/FooterFake";
 class Footer extends Component {
   render() {
-    return <div></div>;
+    return (
+      <div>
+        <FooterFake></FooterFake>
+      </div>
+    );
   }
 }
 

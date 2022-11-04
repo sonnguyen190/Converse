@@ -99,6 +99,21 @@ export default function AsNavFor({ listimg, detail }) {
             ></div>
           </div>
         </Slider>
+        <hr />
+        <div className="div_asnavfor_title">
+          UNTAMED STYLE. Get bold in signature style with a fresh pair of
+          Chucks. Designed to stand out, mismatched animal prints are sure to
+          turn heads. Finished with a breathable mesh lining, they're equal
+          parts comfortable and stylish.
+        </div>
+        <ul className="div_asnavfor_title_ul_all">
+          <b className="div_asnavfor_title_ul">WHY YOU SHOULD BE DOWN</b>
+          <li>High-top sneaker with cotton canvas upper</li>
+          <li>OrthoLite cushioning for all-day comfort</li>
+          <li>A mesh lining keeps it breathable</li>
+          <li>Mismatched animal prints show off your wild side</li>
+          <li>conic Chuck Taylor ankle patch</li>
+        </ul>
       </div>
     );
   }
