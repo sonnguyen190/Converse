@@ -4,6 +4,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import PaymentIcon from "@mui/icons-material/Payment";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
+import { Link } from "react-router-dom";
 const axios = require("axios").default;
 export default function Checkout({
   mang_gio_hang,
@@ -17,6 +18,7 @@ export default function Checkout({
   const [validPhone, setvalidPhone] = useState(false);
   const [loading, setLoading] = useState(false);
   const [is_buy, setis_buy] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     let userr = JSON.parse(localStorage.getItem("user"));
@@ -40,48 +42,59 @@ export default function Checkout({
     return `Basic ${user.authdata}`;
   }
   const handleSubmitForm = () => {
-    let mycart = {
-      username: user.username,
-      fullname: user.name,
-      totalAmount: tong_tien,
-      totalQuantity: so_luong_gio_hang,
-      shoes: mang_gio_hang,
-      phone: phone,
-      address: address,
-      email: user.email,
-    };
-    if (validPhone === true) {
+    console.log(address, phone);
+    if (address !== null && phone !== null) {
+      let mycart = {
+        username: user.username,
+        fullname: user.name,
+        totalAmount: tong_tien,
+        totalQuantity: so_luong_gio_hang,
+        shoes: mang_gio_hang,
+        phone: phone,
+        address: address,
+        email: user.email,
+      };
+      if (validPhone === true) {
+        setError(true);
+      } else {
+        setLoading(true);
+        axios
+          .post("http://localhost:8080/api/order/checkout", mycart, {
+            headers: {
+              "Content-type": "application/json",
+              Authorization: basicAuth(user),
+            },
+          })
+          .then((response) => {
+            setis_buy(true);
+
+            saveLocalstorate("complete");
+            setPhone(null);
+            setAddress(null);
+          })
+          .finally(() => {
+            setLoading(false);
+          });
+      }
     } else {
-      setLoading(true);
-      axios
-        .post("http://localhost:8080/api/order/checkout", mycart, {
-          headers: {
-            "Content-type": "application/json",
-            Authorization: basicAuth(user),
-          },
-        })
-        .then((response) => {
-          console.log(response);
-        })
-        .finally(() => {
-          setis_buy(true);
-          setLoading(false);
-          saveLocalstorate("complete");
-          setPhone(null);
-          setAddress(null);
-        });
+      setError(true);
     }
   };
 
   if (is_buy === true) {
     return (
-      <>
-        <div>cam on da mua hang</div>
-        <div>cam on da mua hang</div>
-        <div>cam on da mua hang</div>
-        <div>cam on da mua hang</div>
-        <div>cam on da mua hang</div>
-      </>
+      <div className="thanks_purchasing">
+        <img
+          src="https://morethankyounotes.com/wp-content/uploads/2017/02/Customer-Thank-You-Note-1.png"
+          alt=""
+        />
+        <Link to={"/all"} className="button_thanks">
+          Continue To Buy
+        </Link>
+        <Link to={"/Orders"} className="button_thanks">
+          View Your Orders
+        </Link>
+      </div>
     );
   } else {
     return (
@@ -146,6 +159,13 @@ export default function Checkout({
                   onChange={handleChange}
                   value={address}
                 />
+                {error === true ? (
+                  <div className="error">
+                    Error!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                  </div>
+                ) : (
+                  <></>
+                )}
               </div>
               <div className="h2_title_shipping">Shipping Methods</div>
               <div className="shipping_method">

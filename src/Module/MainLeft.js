@@ -1,63 +1,76 @@
 import React, { Component } from "react";
-
+import TuneIcon from "@mui/icons-material/Tune";
 class MainLeft extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isActive: false,
+      showColor: false,
+    };
+  }
+  handleOnlickActive = () => {
+    this.setState({
+      isActive: !this.state.isActive,
+    });
+  };
+  handleOnlickShowColor = () => {
+    this.setState({
+      showColor: !this.state.showColor,
+    });
+  };
+
   render() {
     return (
       <div className="main_left">
-        <div className="Gender">
-          <div className="gioitinh_span_main_sanpham">
-            <span>Gender</span>
+        <div
+          onClick={this.props.handleOnclickShowFilter}
+          className="bar_Product1"
+        >
+          <div className="name_hide_ilter">
+            {this.props.isShow === true ? "Hide" : "Show"} Filters
           </div>
-          <div>
-            <div className="checkbox_loc">
-              <div className="checkbox_main_sanpham">
-                <input type="checkbox" />
-              </div>
-              <div className="span_main_sanpham">
-                <span>Men</span>
-              </div>
-            </div>
-            <div className="checkbox_loc">
-              <div className="checkbox_main_sanpham">
-                <input type="checkbox" />
-              </div>
-              <div className="span_main_sanpham">
-                <span> Women</span>
-              </div>
-            </div>
-            <div className="checkbox_loc">
-              <div className="checkbox_main_sanpham">
-                <input type="checkbox" />
-              </div>
-              <div className="span_main_sanpham">
-                <span>Kids</span>
-              </div>
-            </div>
-          </div>
+
+          <TuneIcon className="icon_tune"></TuneIcon>
         </div>
 
-        <div className="Kids_Gender">
-          <div className="gioitinh_span_main_sanpham">
-            <span>Kids Gender</span>
+        <div
+          className={`filter_product ${
+            this.props.isShow === true ? "" : "active"
+          }`}
+        >
+          <div className="all_filter_pro">
+            <div className="title_filter" onClick={this.handleOnlickActive}>
+              Shoe Style
+            </div>
+
+            <ul
+              className={`itemUlFilter ${
+                this.state.isActive === true ? "active" : ""
+              }`}
+            >
+              <li onClick={this.props.handleOnclickHighTop}>High Tops</li>
+              <li>Low Tops</li>
+              <li>Platorm</li>
+            </ul>
           </div>
 
           <div>
-            <div className="checkbox_loc">
-              <div className="checkbox_main_sanpham">
-                <input type="checkbox" />
-              </div>
-              <div className="span_main_sanpham">
-                <span>Boys</span>
-              </div>
+            <div
+              onClick={this.handleOnlickShowColor}
+              className="title_filter_animation"
+            >
+              Colour
             </div>
-            <div className="checkbox_loc">
-              <div className="checkbox_main_sanpham">
-                <input type="checkbox" />
-              </div>
-              <div className="span_main_sanpham">
-                <span>Girls</span>
-              </div>
-            </div>
+
+            <ul
+              className={`itemUlFilter ${
+                this.state.showColor === true ? "active" : ""
+              }`}
+            >
+              <li></li>
+              <li>Low Tops</li>
+              <li>Platorm</li>
+            </ul>
           </div>
         </div>
       </div>

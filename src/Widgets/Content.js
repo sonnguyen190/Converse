@@ -12,6 +12,7 @@ import GioHang from "../Pages/GioHang";
 import TrangChu from "../Pages/TrangChu";
 import Detail from "../Pages/Detail";
 import Checkout from "../Pages/Checkout";
+import Order from "../Pages/Order";
 
 class Content extends Component {
   constructor(props) {
@@ -20,7 +21,7 @@ class Content extends Component {
       mang_gio_hang: [],
       so_luong_gio_hang: 0,
       tong_tien: 0,
-      color: "Random",
+      color: "",
       size: "",
       validSize: false,
       validColor: false,
@@ -62,6 +63,11 @@ class Content extends Component {
       if (this.state.size == "") {
         this.setState((prevState) => {
           prevState.validSize = true;
+          return prevState;
+        });
+      } else if (this.state.color == "") {
+        this.setState((prevState) => {
+          prevState.validColor = true;
           return prevState;
         });
       } else {
@@ -359,6 +365,8 @@ class Content extends Component {
               />
             }
           ></Route>
+
+          <Route path="/Orders" element={<Order />}></Route>
         </Routes>
       </div>
     );

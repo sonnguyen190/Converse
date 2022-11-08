@@ -15,9 +15,13 @@ class ListSanPham extends Component {
 
   render() {
     return (
-      <div className="list_san_pham">
+      <div
+        className={`list_san_pham ${
+          this.props.isShow === true ? "" : "active"
+        }`}
+      >
         <div
-          className="image_item"
+          className={`image_item ${this.props.isShow === true ? "" : "active"}`}
           style={{ backgroundImage: `url(${this.props.listsp.image})` }}
         >
           <div style={{ display: "block" }} className="overlay_addtocart">
@@ -41,7 +45,7 @@ class ListSanPham extends Component {
           </div>
         </div>
         <span>{this.props.listsp.name}</span>
-        <div>${this.props.listsp.price}</div>
+        <div>${this.props.listsp.price}.00</div>
       </div>
     );
   }

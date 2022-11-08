@@ -24,7 +24,6 @@ class TrangChu extends Component {
         <TrendingStyles />
         <Community />
         <SignUpForEmail />
-        <FooterFake />
       </div>
     );
   }

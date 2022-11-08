@@ -151,7 +151,15 @@ class Navbar extends Component {
                       </div>
                       {this.state.isShowlogout == true ? (
                         <div className="logout_nav">
-                          <div onClick={this.handleSignOut}>Sign Out</div>
+                          <div
+                            className="item_user_logout"
+                            onClick={this.handleSignOut}
+                          >
+                            Sign Out
+                          </div>
+                          <Link className="item_user_logout" to={"/Orders"}>
+                            My Orders
+                          </Link>
                         </div>
                       ) : (
                         <></>
