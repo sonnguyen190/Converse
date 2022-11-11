@@ -113,10 +113,11 @@ class Detail extends Component {
               <h3>${this.state.detail.price}.00</h3>
 
               <div>{this.state.detail.title}</div>
+              <hr />
               <div className="div_color_scale">
-                <b className="b_detail_color"> Color: </b>
+                <b className="b_detail_color"> Colour: </b>
                 {this.props.validColor === true ? (
-                  <div className="errorSize">choose Color !!!</div>
+                  <b className="errorSize">choose Color !!!</b>
                 ) : (
                   <> </>
                 )}
@@ -132,10 +133,11 @@ class Detail extends Component {
                   ></button>
                 ))}
               </div>
+              <hr />
               <div>
-                <b> Size: </b>
+                <b> Shoe Size: </b>
                 {this.props.validSize == true ? (
-                  <div className="errorSize">choose size !!!</div>
+                  <b className="errorSize">choose size !!!</b>
                 ) : (
                   <> </>
                 )}
@@ -163,6 +165,7 @@ class Detail extends Component {
                     ))}
                 </div>
               </div>
+              <hr />
               <button
                 onClick={this.handleaddToCartProcess}
                 className="Detail_btn_addtocart"

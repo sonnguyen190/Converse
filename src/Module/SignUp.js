@@ -146,6 +146,11 @@ class SignUp extends Component {
               value={this.props.email}
               onChange={this.props.handleChange}
             />
+            {this.props.valid_email === false ? (
+              <p id="valid_password">Email is requied</p>
+            ) : (
+              <></>
+            )}
           </div>
           <b className="error_Signup">{this.props.errorMessage}</b>
         </div>

@@ -41,6 +41,9 @@ class MainLeft extends Component {
           <div className="all_filter_pro">
             <div className="title_filter" onClick={this.handleOnlickActive}>
               Shoe Style
+              <b className="icon_filter">
+                {this.state.isActive === true ? "-" : "+"}
+              </b>
             </div>
 
             <ul
@@ -49,8 +52,8 @@ class MainLeft extends Component {
               }`}
             >
               <li onClick={this.props.handleOnclickHighTop}>High Tops</li>
-              <li>Low Tops</li>
-              <li>Platorm</li>
+              <li onClick={this.props.handleOnclickLowTop}>Low Tops</li>
+              <li onClick={this.props.handleOnclickPlatform}>Platorm</li>
             </ul>
           </div>
 
@@ -59,7 +62,10 @@ class MainLeft extends Component {
               onClick={this.handleOnlickShowColor}
               className="title_filter_animation"
             >
-              Colour
+              Search
+              <b className="icon_filter2">
+                {this.state.showColor === true ? "-" : "+"}
+              </b>
             </div>
 
             <ul
@@ -67,9 +73,13 @@ class MainLeft extends Component {
                 this.state.showColor === true ? "active" : ""
               }`}
             >
-              <li></li>
-              <li>Low Tops</li>
-              <li>Platorm</li>
+              <li className="li_search">
+                <input
+                  value={this.props.valueSearch}
+                  onChange={this.props.handleChangeSearch}
+                  type="text"
+                />
+              </li>
             </ul>
           </div>
         </div>

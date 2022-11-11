@@ -34,7 +34,7 @@ class SignIn extends Component {
             />
           </div>
           {this.props.isError == true ? (
-            <b className="error_Signup">"Đồ ngu, đồ ăn hại"</b>
+            <b className="error_Signup">password or username incorrect</b>
           ) : (
             <></>
           )}

@@ -8,9 +8,9 @@ class Register extends Component {
     this.state = {
       username: "",
       email: "",
-      valid_email: "",
       password: "",
       valid_password: "true",
+      valid_email: "true",
       repassword: "",
       ho_ten: "",
       is_active: "signin",

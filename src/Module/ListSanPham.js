@@ -44,7 +44,7 @@ class ListSanPham extends Component {
             </div>
           </div>
         </div>
-        <span>{this.props.listsp.name}</span>
+        <span className="name_product">{this.props.listsp.name}</span>
         <div>${this.props.listsp.price}.00</div>
       </div>
     );
